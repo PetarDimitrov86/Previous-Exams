@@ -1,0 +1,107 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        string text = Console.ReadLine();
+        int sumWhite = 0;
+        int sumBlack = 0;
+        int sumFromWhiteToBlack = 0;
+        int sumFromBlackToWhite = 0;
+        if (text.Length > n * n)
+        {
+            for (int i = 0; i < n * n; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    int unicodeValue = Convert.ToInt32(text[i]);
+                    if (unicodeValue >= 65 && unicodeValue <= 90)
+                    {
+                        sumFromBlackToWhite = sumFromBlackToWhite + unicodeValue;
+                        unicodeValue = 0;
+                    }
+                    else if (unicodeValue > 122 || (unicodeValue < 97 && unicodeValue > 90) || (unicodeValue < 65 && unicodeValue > 57) || unicodeValue < 48)
+                        unicodeValue = 0;
+                    sumBlack = sumBlack + unicodeValue;
+                }
+                else if (i % 2 == 1)
+                {
+                    int unicodeValue = Convert.ToInt32(text[i]);
+                    if (unicodeValue >= 65 && unicodeValue <= 90)
+                    {
+                        sumFromWhiteToBlack = sumFromWhiteToBlack + unicodeValue;
+                        unicodeValue = 0;
+                    }
+                    else if (unicodeValue > 122 || (unicodeValue < 97 && unicodeValue > 90) || (unicodeValue < 65 && unicodeValue > 57) || unicodeValue < 48)
+                        unicodeValue = 0;
+                    else
+                        sumWhite = sumWhite + unicodeValue;
+                }
+            }
+            sumWhite = sumWhite + sumFromBlackToWhite;
+            sumBlack = sumBlack + sumFromWhiteToBlack;
+            if (sumBlack > sumWhite)
+            {
+                Console.WriteLine("The winner is: black team");
+                Console.WriteLine(Math.Abs(sumWhite - sumBlack));
+            }
+            else if (sumBlack < sumWhite)
+            {
+                Console.WriteLine("The winner is: white team");
+                Console.WriteLine(Math.Abs(sumWhite - sumBlack));
+            }
+            else
+            {
+                Console.WriteLine("Equal result: {0}", sumBlack);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    int unicodeValue = Convert.ToInt32(text[i]);
+                    if (unicodeValue >= 65 && unicodeValue <= 90)
+                    {
+                        sumFromBlackToWhite = sumFromBlackToWhite + unicodeValue;
+                        unicodeValue = 0;
+                    }
+                    else if (unicodeValue > 122 || (unicodeValue < 97 && unicodeValue > 90) || (unicodeValue < 65 && unicodeValue > 57) || unicodeValue < 48)
+                        unicodeValue = 0;
+                    sumBlack = sumBlack + unicodeValue;
+                }
+                else if (i % 2 == 1)
+                {
+                    int unicodeValue = Convert.ToInt32(text[i]);
+                    if (unicodeValue >= 65 && unicodeValue <= 90)
+                    {
+                        sumFromWhiteToBlack = sumFromWhiteToBlack + unicodeValue;
+                        unicodeValue = 0;
+                    }
+                    else if (unicodeValue > 122 || (unicodeValue < 97 && unicodeValue > 90) || (unicodeValue < 65 && unicodeValue > 57) || unicodeValue < 48)
+                        unicodeValue = 0;
+                    else
+                        sumWhite = sumWhite + unicodeValue;
+                }
+            }
+            sumWhite = sumWhite + sumFromBlackToWhite;
+            sumBlack = sumBlack + sumFromWhiteToBlack;
+            if (sumBlack > sumWhite)
+            {
+                Console.WriteLine("The winner is: black team");
+                Console.WriteLine(Math.Abs(sumWhite - sumBlack));
+            }
+            else if (sumBlack < sumWhite)
+            {
+                Console.WriteLine("The winner is: white team");
+                Console.WriteLine(Math.Abs(sumWhite - sumBlack));
+            }
+            else
+            {
+                Console.WriteLine("Equal result: {0}", sumBlack);
+            }
+        }
+        }
+    }
