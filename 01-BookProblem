@@ -1,0 +1,26 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int bookPages = int.Parse(Console.ReadLine());
+        int campingDays = int.Parse(Console.ReadLine());
+        int pagePerMonth = int.Parse(Console.ReadLine());
+
+        int readingDays = 30 - campingDays;
+        int years = 0;
+        double totalBookPagesRead = readingDays * pagePerMonth;
+        double months = Math.Ceiling(bookPages / totalBookPagesRead);
+        if (readingDays == 0 || pagePerMonth == 0 || months <1 || readingDays < 0 || readingDays >30 || campingDays > 30 || campingDays < 0 )
+        {
+            Console.WriteLine("never");
+            return;
+        }
+        while (months >= 12)
+        {
+                years += 1;
+                months = months - 12;
+        }
+            Console.WriteLine("{0} years {1} months", years, months);
+    }
+}
