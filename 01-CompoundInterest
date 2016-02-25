@@ -1,0 +1,28 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        decimal price = int.Parse(Console.ReadLine());
+        int years = int.Parse(Console.ReadLine());
+        decimal yearlyInterest = decimal.Parse(Console.ReadLine());
+        decimal friendInterest = decimal.Parse(Console.ReadLine());
+        decimal yearsFactorial = 1;
+        decimal newFactorial = 1;
+        for (int i = 0; i < years; i++)
+        {
+            yearsFactorial = newFactorial * (1 + yearlyInterest);
+            newFactorial = yearsFactorial;
+        }
+        decimal bankValue = price * newFactorial;
+        decimal friendValue = price * (1 + friendInterest);
+        if (bankValue < friendValue)
+        {
+            Console.WriteLine("{0:0.00} Bank", bankValue );
+        }
+        else
+        {
+            Console.WriteLine("{0:0.00} Friend", friendValue);
+        }
+    }
+}
