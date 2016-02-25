@@ -1,0 +1,64 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        Console.Write(new string('.', (n * 3)/2));
+        Console.Write('*');
+        Console.WriteLine(new string('.', (n * 3) / 2));
+        var middleLines = 2;
+        //Upper Part
+        #region
+        for (int row = 1; row <= n-1; row++)
+        {
+            Console.Write(new string('.', row));
+            Console.Write('*');
+            Console.Write(new string('.', (3*n)/2 - middleLines));
+            Console.Write('*');
+            Console.Write(new string('.', (3 * n) / 2 - middleLines));
+            Console.Write('*');
+            Console.WriteLine(new string('.', row));
+            middleLines++;
+        }
+        #endregion
+        //Upper Middle
+        #region
+        for (int row = 0; row < n / 2; row++)
+        {
+            Console.Write(new string('.', n));
+            Console.Write(new string('*', n));
+            Console.WriteLine(new string('.', n));
+        }
+        #endregion
+        Console.WriteLine(new string('*', 3 * n));
+        
+        //Lower Middle
+        #region
+        for (int row = 0; row < n / 2; row++)
+        {
+            Console.Write(new string('.', n));
+            Console.Write(new string('*', n));
+            Console.WriteLine(new string('.', n));
+        }
+        #endregion
+        //Lower Part
+        #region
+        middleLines = n/2;
+        for (int row = 1; row <= n - 1; row++)
+        {
+            Console.Write(new string('.', n - row));
+            Console.Write('*');
+            Console.Write(new string('.', middleLines));
+            Console.Write('*');
+            Console.Write(new string('.', middleLines));
+            Console.Write('*');
+            Console.WriteLine(new string('.', n - row));
+            middleLines++;
+        }
+        #endregion
+        Console.Write(new string('.', (n * 3) / 2));
+        Console.Write('*');
+        Console.WriteLine(new string('.', (n * 3) / 2));
+    }
+}
