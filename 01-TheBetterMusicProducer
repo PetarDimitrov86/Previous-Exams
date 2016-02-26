@@ -1,0 +1,38 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int albumsEurope = int.Parse(Console.ReadLine());
+        decimal euroPrice = decimal.Parse(Console.ReadLine());
+        int albumsNorthAmerica = int.Parse(Console.ReadLine());
+        decimal dollarPrice = decimal.Parse(Console.ReadLine());
+        int albumsSouthAmerica = int.Parse(Console.ReadLine());
+        decimal pesosPrice = decimal.Parse(Console.ReadLine());
+        int concertCount = int.Parse(Console.ReadLine());
+        decimal concertPrice = decimal.Parse(Console.ReadLine());
+
+        decimal euroToLeva = 1.94m * euroPrice;
+        decimal dollarToLeva = 1.72m * dollarPrice;
+        decimal pesoToLeva =  pesosPrice / 332.74m;
+
+        decimal totalProfitFromAlbum = (albumsEurope * euroToLeva) + (albumsNorthAmerica * dollarToLeva) + (albumsSouthAmerica * pesoToLeva);
+        decimal producerSalary = 35 * totalProfitFromAlbum / 100;
+        decimal taxesLoss = 20 * (totalProfitFromAlbum - producerSalary) / 100;
+        decimal finalIncomeAlbums = totalProfitFromAlbum - producerSalary - taxesLoss;
+
+        decimal concertProfit = concertCount * (concertPrice * 1.94m);
+        if (concertProfit > 100000)
+        {
+            concertProfit = concertProfit - (15 * concertProfit / 100);
+        }
+        if (finalIncomeAlbums > concertProfit)
+        {
+            Console.WriteLine("Let's record some songs! They'll bring us {0:f2}lv.", finalIncomeAlbums);
+        }
+        else
+        {
+            Console.WriteLine("On the road again! We'll see the world and earn {0:f2}lv.", concertProfit);
+        }
+    }
+}
