@@ -1,0 +1,36 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        byte escapeAttempts = byte.Parse(Console.ReadLine());
+        ulong totalSlaps = 0;
+        ulong escapedThieves = 0;
+        ulong totalBeers = 0;
+        ulong extraSlaps = 0;
+        for (int i = 0; i < escapeAttempts; i++)
+        {
+            ulong tooFewThieves = 0;
+            ulong thievesTryingEscape = ulong.Parse(Console.ReadLine());
+            ulong beerDrunk = ulong.Parse(Console.ReadLine());
+            if (thievesTryingEscape >= 5)
+            {
+                totalSlaps += 5;
+                thievesTryingEscape = thievesTryingEscape - 5;
+            }
+            else if (thievesTryingEscape < 5)
+            {
+                extraSlaps = extraSlaps + thievesTryingEscape;
+                thievesTryingEscape = 0;
+            }
+            escapedThieves += thievesTryingEscape;
+            totalBeers += beerDrunk;
+        }
+        ulong sixpacks = totalBeers / 6;
+        ulong singleBeers = totalBeers % 6;
+       
+        Console.WriteLine("{0} thieves slapped.", totalSlaps + extraSlaps);
+        Console.WriteLine("{0} thieves escaped.", escapedThieves);
+        Console.WriteLine("{0} packs, {1} bottles.", sixpacks, singleBeers);
+    }
+}
