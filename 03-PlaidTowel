@@ -1,0 +1,100 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        char background = char.Parse(Console.ReadLine());
+        char rhombus = char.Parse(Console.ReadLine());
+
+        int mid = 2*n-3;  
+
+        Console.Write(new string (background, n));
+        Console.Write(rhombus);
+        Console.Write(new string (background, 2*n - 1));
+        Console.Write(rhombus);
+        Console.WriteLine(new string(background, n));
+        for (int row = 1; row < n; row++)
+        {
+            Console.Write(new string(background, n - row));
+            Console.Write(rhombus);
+            Console.Write(new string(background, row * 2 - 1));
+            Console.Write(rhombus);
+            Console.Write(new string(background, mid ));
+            Console.Write(rhombus);
+            Console.Write(new string(background, row * 2 - 1));
+            Console.Write(rhombus);
+            Console.WriteLine(new string(background, n - row));
+            mid -= 2;
+        }
+        Console.Write(rhombus);
+        Console.Write(new string(background, 2*n - 1));
+        Console.Write(rhombus);
+        Console.Write(new string(background, 2 * n - 1));
+        Console.WriteLine(rhombus);
+
+        int counter1 = 2 * n - 3;
+        mid = 1;
+        for (int row = 1; row < n; row++)
+        {
+            Console.Write(new string(background, row));
+            Console.Write(rhombus);
+            Console.Write(new string(background, counter1));
+            Console.Write(rhombus);
+            Console.Write(new string(background, mid));
+            Console.Write(rhombus);
+            Console.Write(new string(background, counter1));
+            Console.Write(rhombus);
+            Console.WriteLine(new string(background, row));
+            mid += 2;
+            counter1 -= 2;
+        }
+        Console.Write(new string(background, n));
+        Console.Write(rhombus);
+        Console.Write(new string(background, 2 * n - 1));
+        Console.Write(rhombus);
+        Console.WriteLine(new string(background, n));
+
+        mid = 2 * n - 3;
+        for (int row = 1; row < n; row++)
+        {
+            Console.Write(new string(background, n - row));
+            Console.Write(rhombus);
+            Console.Write(new string(background, row * 2 - 1));
+            Console.Write(rhombus);
+            Console.Write(new string(background, mid));
+            Console.Write(rhombus);
+            Console.Write(new string(background, row * 2 - 1));
+            Console.Write(rhombus);
+            Console.WriteLine(new string(background, n - row));
+            mid -= 2;
+        }
+        Console.Write(rhombus);
+        Console.Write(new string(background, 2 * n - 1));
+        Console.Write(rhombus);
+        Console.Write(new string(background, 2 * n - 1));
+        Console.WriteLine(rhombus);
+
+        counter1 = 2 * n - 3;
+        mid = 1;
+        for (int row = 1; row < n; row++)
+        {
+            Console.Write(new string(background, row));
+            Console.Write(rhombus);
+            Console.Write(new string(background, counter1));
+            Console.Write(rhombus);
+            Console.Write(new string(background, mid));
+            Console.Write(rhombus);
+            Console.Write(new string(background, counter1));
+            Console.Write(rhombus);
+            Console.WriteLine(new string(background, row));
+            mid += 2;
+            counter1 -= 2;
+        }
+        Console.Write(new string(background, n));
+        Console.Write(rhombus);
+        Console.Write(new string(background, 2 * n - 1));
+        Console.Write(rhombus);
+        Console.WriteLine(new string(background, n));
+    }
+}
