@@ -1,0 +1,53 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        int leftSide = n / 2;
+        int inside = n / 2;
+        Console.Write(new string('.', leftSide));
+        Console.Write(new string('&', n / 2 + 1));
+        Console.Write(new string('.', n));
+        Console.Write(new string('&', n / 2 + 1));
+        Console.WriteLine(new string('.', leftSide));
+        for (int row = 1; row <= n /2; row++)
+        {
+            leftSide -= 1;
+            Console.Write(new string('.', leftSide));
+            Console.Write("&");
+            Console.Write(new string('*', inside));
+            Console.Write("&");
+            if (row == n / 2)
+                Console.Write(new string('=', n));
+            else
+            Console.Write(new string('.', n));
+            Console.Write("&");
+            Console.Write(new string('*', inside));
+            Console.Write("&");
+            Console.WriteLine(new string('.', leftSide));
+            inside++;
+        }
+        leftSide = 1;
+        for (int row = 1; row <= n/2 - 1; row++)
+        {
+            inside--;
+            Console.Write(new string('.', leftSide));
+            Console.Write("&");
+            Console.Write(new string('*', inside - 1));
+            Console.Write("&");
+            Console.Write(new string('.', n));
+            Console.Write("&");
+            Console.Write(new string('*', inside - 1));
+            Console.Write("&");
+            Console.WriteLine(new string('.', leftSide));
+            leftSide++;
+        }
+        leftSide = n / 2;
+        Console.Write(new string('.', leftSide));
+        Console.Write(new string('&', n / 2 + 1));
+        Console.Write(new string('.', n));
+        Console.Write(new string('&', n / 2 + 1));
+        Console.WriteLine(new string('.', leftSide));
+    }
+}
