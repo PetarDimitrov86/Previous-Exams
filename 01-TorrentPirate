@@ -1,0 +1,24 @@
+using System;
+class TorrentPirate
+{
+    static void Main(string[] args)
+    {
+
+        int megabytes = int.Parse(Console.ReadLine());
+        int moneyCinema = int.Parse(Console.ReadLine());
+        int wifeMoneyPerHour = int.Parse(Console.ReadLine());
+
+        double downloadTime = (double)megabytes / 2.0 / 60.0 / 60.0;
+        double PriceToDownload = downloadTime * wifeMoneyPerHour;
+        double moviesAmmount = megabytes / 1500.0;
+
+        double cinemaCost = moviesAmmount * moneyCinema;
+
+        if (cinemaCost < PriceToDownload)
+        {
+            Console.WriteLine("cinema -> {0:f2}lv", cinemaCost);
+        }
+        else
+            Console.WriteLine("mall -> {0:f2}lv", PriceToDownload);
+    }
+}
