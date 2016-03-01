@@ -1,0 +1,41 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        string[] input = Console.ReadLine().Split('\\');
+        string month = input[0];
+        decimal moneyPerHour = decimal.Parse(input[1]);
+        decimal hoursPerDay = decimal.Parse(input[2]);
+        decimal itemPrice = decimal.Parse(input[3]);
+
+        int daysPerMonth = 0;
+        switch (month)
+        {
+            case "Apr":
+            case "Jun":
+            case "Sept":
+            case "Nov":
+                daysPerMonth = 30;
+                break;
+            case "Feb":
+                daysPerMonth = 28;
+                break;
+            default:
+                daysPerMonth = 31;
+                break;
+        }
+        daysPerMonth -= 10;
+        decimal salary = daysPerMonth * hoursPerDay * moneyPerHour;
+        if (salary > 700)
+        {
+            salary = salary + (10 * salary / 100); 
+        }
+        if (salary >= itemPrice)
+        {
+            Console.WriteLine("Money left = {0:f2} leva.", salary - itemPrice);
+        }
+        else
+            Console.WriteLine("Not enough money. {0:f2} leva needed.", itemPrice - salary);
+    }
+}
