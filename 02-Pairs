@@ -1,0 +1,37 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        string[] n = Console.ReadLine().Split(' ');
+        int PairCounter = 0;
+        int maxDifference = 1;
+        int sumPairFirst = 0;
+        int sumPairSecond = 0;
+        int equalCounter = 0;
+        int smallestSum = int.MaxValue;
+        int biggestSum = int.MinValue;
+        for (int i = 1; i <= n.Length / 2 ; i++)
+        {
+            sumPairSecond = sumPairFirst;
+            sumPairFirst = int.Parse(n[PairCounter]) + int.Parse(n[PairCounter + 1]);
+            PairCounter += 2;           
+            if (sumPairFirst == sumPairSecond && sumPairFirst != 0)
+                equalCounter++;
+            smallestSum = Math.Min(sumPairSecond, sumPairFirst);
+            biggestSum = Math.Max(sumPairSecond, sumPairFirst);
+            if (Math.Abs(sumPairFirst-sumPairSecond) > maxDifference && i >=2)
+            {
+                maxDifference = Math.Abs(biggestSum - smallestSum);
+            }
+        }
+        if (equalCounter == n.Length/2 - 1)
+        {
+            Console.WriteLine("Yes, value={0}",sumPairFirst);
+        }
+        else
+        {
+            Console.WriteLine("No, maxdiff={0}",maxDifference);
+        }
+    }
+}
