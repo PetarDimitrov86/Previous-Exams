@@ -1,0 +1,76 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        Console.Write(new string('.', (3*n + 2) / 2));
+        Console.Write("*");
+        Console.WriteLine(new string('.', (3 * n + 2) / 2));
+        int leftRight = (3 * n + 2) / 2 - 1;
+        int inside = 1;
+        for (int row = 1; row <= n /2 + 1; row++)
+        {
+            Console.Write(new string('.', leftRight));
+            Console.Write("*");
+            Console.Write(new string('.', inside));
+            Console.Write("*");
+            Console.WriteLine(new string('.', leftRight));
+            inside += 2;
+            leftRight--;
+        }
+        Console.Write(new string('*', n));
+        Console.Write(new string('.', n+2));
+        Console.WriteLine(new string('*', n));
+        leftRight = 1;
+        inside = 3 * n - 2;
+        for (int row = 1; row <= n/2; row++)
+        {
+            Console.Write(new string('.', leftRight));
+            Console.Write("*");
+            Console.Write(new string('.', inside));
+            Console.Write("*");
+            Console.WriteLine(new string('.', leftRight));
+            leftRight += 1;
+            inside -= 2;
+        }
+        leftRight -= 2;
+        inside = 0;
+        for (int i = 1; i < n/2 +1; i++)
+        {
+            Console.Write(new string('.', leftRight));
+            Console.Write("*");
+            Console.Write(new string('.', n/2));
+            Console.Write("*");
+            Console.Write(new string('.', inside));
+            Console.Write("*");
+            Console.Write(new string('.', n ));
+            Console.Write("*");
+            Console.Write(new string('.', inside));
+            Console.Write("*");
+            Console.Write(new string('.', n / 2));
+            Console.Write("*");
+            Console.WriteLine(new string('.', leftRight));
+            leftRight--;
+            inside++;
+        }
+        Console.Write(new string('*', n/2 +1));
+        Console.Write(new string('.', n / 2));
+        Console.Write("*");
+        Console.Write(new string('.', n));
+        Console.Write("*");
+        Console.Write(new string('.', n / 2));
+        Console.WriteLine(new string('*', n / 2 + 1));
+        for (int row = 1; row <= n; row++)
+        {
+            Console.Write(new string('.', n));
+            Console.Write("*");
+            Console.Write(new string('.', n));
+            Console.Write("*");
+            Console.WriteLine(new string('.', n));
+        }
+        Console.Write(new string('.', n));
+        Console.Write(new string('*', n + 2));
+        Console.Write(new string('.', n));
+    }
+}
