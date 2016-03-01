@@ -1,0 +1,24 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        uint rubles = uint.Parse(Console.ReadLine());
+        uint dollars = uint.Parse(Console.ReadLine());
+        uint euro = uint.Parse(Console.ReadLine());
+        uint specialOffer = uint.Parse(Console.ReadLine());
+        uint bgStore = uint.Parse(Console.ReadLine());
+
+        decimal rublesInLeva = rubles * 3.5m / 100;
+        decimal dollarsInLeva = dollars * 1.5m;
+        decimal euroInLeva = euro * 1.95m;
+        decimal refund = specialOffer / 2.0m;
+
+        decimal comparison1 = Math.Min(rublesInLeva, dollarsInLeva);
+        decimal comparison2 = Math.Min(euroInLeva, refund);
+        decimal comparison3 = Math.Min(comparison1, comparison2);
+        decimal finalComparison = Math.Min(comparison3, bgStore);
+
+        Console.WriteLine("{0:0.00}", Math.Round(finalComparison, 3));
+    }
+}
