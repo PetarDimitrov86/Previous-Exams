@@ -1,0 +1,30 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int Ax = int.Parse(Console.ReadLine());
+        int Ay = int.Parse(Console.ReadLine());
+        int Bx = int.Parse(Console.ReadLine());
+        int By = int.Parse(Console.ReadLine());
+        int Cx = int.Parse(Console.ReadLine());
+        int Cy = int.Parse(Console.ReadLine());
+
+        double a = Math.Sqrt((Bx-Cx)*(Bx - Cx) + (By - Cy)*(By - Cy));
+        double b = Math.Sqrt((Ax - Cx) * (Ax - Cx) + (Ay - Cy) * (Ay - Cy));
+        double c = Math.Sqrt((Bx - Ax) * (Bx - Ax) + (By - Ay) * (By - Ay));
+
+        if (a + b > c && b + c > a && a + c > b)
+        {
+            double halfPerimeter = (a + b + c) / 2;
+            double area = Math.Sqrt(halfPerimeter * (halfPerimeter - a) * (halfPerimeter - b) * (halfPerimeter - c));
+            Console.WriteLine("Yes");
+            Console.WriteLine("{0:f2}", area);
+        }
+        else
+        {
+            Console.WriteLine("No");
+            Console.WriteLine("{0:f2}", c);
+        }
+    }
+}
