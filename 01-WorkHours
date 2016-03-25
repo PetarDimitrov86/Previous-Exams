@@ -1,0 +1,29 @@
+using System;
+
+namespace P1.Training_Lab
+{
+    class Program
+    {
+        static void Main()
+        {
+            int hours = int.Parse(Console.ReadLine());
+            int days = int.Parse(Console.ReadLine());
+            int productivityPercent = int.Parse(Console.ReadLine());
+
+            double finalWorkDays = days - (days * 0.10);
+            double finalWorkHours = finalWorkDays * 12;
+            double efficientWorkHours = Math.Floor(finalWorkHours * productivityPercent / 100) ;
+
+            if (efficientWorkHours >= hours)
+            {
+                Console.WriteLine("Yes");
+                Console.WriteLine(efficientWorkHours - hours);
+            }
+            else
+            {
+                Console.WriteLine("No");
+                Console.WriteLine(efficientWorkHours - hours);
+            }
+        }
+    }
+}
