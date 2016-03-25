@@ -1,0 +1,19 @@
+using System;
+using System.Linq;
+class Program
+{
+    static void Main(string[] args)
+    {
+        long[] sequence = Console.ReadLine().Split(' ').Select(long.Parse).ToArray();
+        for (int i = 0; i < sequence.Length; i++)
+        {
+            if (sequence.Sum() == sequence[i] * 2)
+            {
+                Console.WriteLine("Yes, sum={0}", sequence[i]);
+                return;
+            }
+            else if (i == sequence.Length - 1)
+                Console.WriteLine("No, diff={0}", Math.Abs(sequence.Sum() - 2 * sequence.Max()));
+        }
+    }
+}
