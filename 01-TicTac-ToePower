@@ -1,0 +1,63 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        long x = long.Parse(Console.ReadLine());
+        long y = long.Parse(Console.ReadLine());
+        long value = long.Parse(Console.ReadLine());
+        long index = 1;
+
+        if (y == 0)
+        {
+            if (x == 1)
+            {
+                value += 1;
+                index = 2;
+            }
+            else if (x == 2)
+            {
+                value += 2;
+                index = 3;
+            }
+        }
+        else if (y == 1)
+        {
+            if (x == 0)
+            {
+                value += 3;
+                index = 4;
+            }
+            else if (x == 1)
+            {
+                value += 4;
+                index = 5;
+            }
+            else if (x == 2)
+            {
+                value += 5;
+                index = 6;
+            }
+        }
+        else if (y == 2)
+        {
+            if (x == 0)
+            {
+                value += 6;
+                index = 7;
+            }
+            else if (x == 1)
+            {
+                value += 7;
+                index = 8;
+            }
+            else if (x == 2)
+            {
+                value += 8;
+                index = 9;
+            }
+        }
+        long result = (long)Math.Pow(value, index);
+        Console.WriteLine(result);
+    }
+}
