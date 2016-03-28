@@ -1,0 +1,25 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int money = int.Parse(Console.ReadLine());
+        int weekdaysOut = int.Parse(Console.ReadLine());
+        int weekendsHometown = int.Parse(Console.ReadLine());
+
+        int weekendExpense = (4 - weekendsHometown) * 40;
+        int normalWeekdays = 22 - weekdaysOut;
+
+
+        decimal weekdaysOutExpenses = weekdaysOut * (Math.Truncate(0.03m * money) + 10);
+        decimal normalWeekdaysExpenses = normalWeekdays * 10;
+
+        decimal totalExpenses = weekdaysOutExpenses + normalWeekdaysExpenses + 150 + weekendExpense;
+        if (money > totalExpenses)
+            Console.WriteLine("Yes, leftover {0}.", money - totalExpenses);
+        else if (money < totalExpenses)
+            Console.WriteLine("No, not enough {0}.", totalExpenses - money);
+        else
+            Console.WriteLine("Exact Budget.");
+    }
+}
