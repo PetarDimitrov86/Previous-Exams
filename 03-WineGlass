@@ -1,0 +1,27 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        for (int i = 0; i < n / 2; i++)
+        {
+            Console.Write(new string('.', i));
+            Console.Write('\\');
+            Console.Write(new string('*', n - 2 - 2*i));
+            Console.Write('/');
+            Console.WriteLine(new string('.', i));
+        }
+        int maxRows = n / 2 - 1;
+        if (n >= 12)
+            maxRows = n / 2 - 2;
+        for (int i = 0; i < maxRows; i++)
+        {
+            Console.Write(new string('.', n / 2 - 1));
+            Console.Write("||");
+            Console.WriteLine(new string('.', n / 2 - 1)); 
+        }
+        for (int i = 0; i < n - (n/2) - maxRows; i++)
+            Console.WriteLine(new string('-', n));
+    }
+}
