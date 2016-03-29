@@ -1,0 +1,41 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        Console.Write(new string('.', n - 1));
+        Console.Write("*");
+        Console.WriteLine(new string('.', n - 1));
+        for (int row = 1; row <= n-1; row++)
+        {
+            Console.Write(new string('.', n - 1 - row));
+            Console.Write("*");
+            Console.Write(new string('.', 2*row - 1));
+            Console.Write("*");
+            Console.WriteLine(new string('.', n - 1 - row));
+        }
+        Console.WriteLine(new string('*', 2*n - 1));
+        for (int row = 1; row <= n / 4; row++)
+        {
+            Console.Write("*");
+            Console.Write(new string('.', 2 * n - 3));
+            Console.WriteLine("*");
+        }
+        for (int row = 0; row < n / 2; row++)
+        {
+            Console.Write("*");
+            Console.Write(new string('.', n/2));
+            Console.Write(new string('*', n -3 ));
+            Console.Write(new string('.', n/2));
+            Console.WriteLine("*");
+        }
+        for (int row = 1; row <= n / 4; row++)
+        {
+            Console.Write("*");
+            Console.Write(new string('.', 2 * n - 3));
+            Console.WriteLine("*");
+        }
+        Console.WriteLine(new string('*', 2 * n - 1));
+    }
+}
