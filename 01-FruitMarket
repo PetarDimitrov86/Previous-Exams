@@ -1,0 +1,79 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        string dayOfWeek = Console.ReadLine();
+        decimal quantity1 = decimal.Parse(Console.ReadLine());
+        string product1 = Console.ReadLine();
+        decimal quantity2 = decimal.Parse(Console.ReadLine());
+        string product2 = Console.ReadLine();
+        decimal quantity3 = decimal.Parse(Console.ReadLine());
+        string product3 = Console.ReadLine();
+
+        decimal price1 = 0.0m;
+        decimal price2 = 0.0m;
+        decimal price3 = 0.0m;
+
+        switch (product1)
+        {
+            case "banana": price1 = 1.80m; break;
+            case "cucumber": price1 = 2.75m; break;
+            case "tomato": price1 = 3.20m; break;
+            case "orange": price1 = 1.60m; break;
+            case "apple": price1 = 0.86m; break;
+        }
+        switch (product2)
+        {
+            case "banana": price2 = 1.80m; break;
+            case "cucumber": price2 = 2.75m; break;
+            case "tomato": price2 = 3.20m; break;
+            case "orange": price2 = 1.60m; break;
+            case "apple": price2 = 0.86m; break;
+        }
+        switch (product3)
+        {
+            case "banana": price3 = 1.80m; break;
+            case "cucumber": price3 = 2.75m; break;
+            case "tomato": price3 = 3.20m; break;
+            case "orange": price3 = 1.60m; break;
+            case "apple": price3 = 0.86m; break;
+        }
+
+        if (dayOfWeek == "Friday")
+        {
+            price1 -= 0.1m * price1;
+            price2 -= 0.1m * price2;
+            price3 -= 0.1m * price3;
+        }
+        if (dayOfWeek == "Sunday")
+        {
+            price1 -= 0.05m * price1;
+            price2 -= 0.05m * price2;
+            price3 -= 0.05m * price3;
+        }
+        if (dayOfWeek == "Wednesday" && (product1 == "cucumber" || product1 == "tomato") )
+            price1 -= 0.1m * price1;
+        if (dayOfWeek == "Wednesday" && (product2 == "cucumber" || product2 == "tomato"))
+            price2 -= 0.1m * price2;
+        if (dayOfWeek == "Wednesday" && (product3 == "cucumber" || product3 == "tomato"))
+            price3 -= 0.1m * price3;
+
+        if (dayOfWeek == "Tuesday" && (product1 == "banana" || product1 == "orange" || product1 == "apple"))
+            price1 -= 0.2m * price1;
+        if (dayOfWeek == "Tuesday" && (product2 == "banana" || product2 == "orange" || product2 == "apple"))
+            price2 -= 0.2m * price2;
+        if (dayOfWeek == "Tuesday" && (product3 == "banana" || product3 == "orange" || product3 == "apple"))
+            price3 -= 0.2m * price3;
+
+        if (dayOfWeek == "Thursday" && (product1 == "banana"))
+            price1 -= 0.3m * price1;
+        if (dayOfWeek == "Thursday" && (product2 == "banana"))
+            price2 -= 0.3m * price2;
+        if (dayOfWeek == "Thursday" && (product3 == "banana"))
+            price3 -= 0.3m * price3;
+
+        decimal totalPrice = price1 * quantity1 + price2 * quantity2 + price3 * quantity3;
+        Console.WriteLine("{0:f2}", totalPrice);
+    }
+}
