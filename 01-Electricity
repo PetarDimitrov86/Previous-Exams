@@ -1,0 +1,26 @@
+using System;
+class Electricity
+{
+    static void Main(string[] args)
+    {
+        int floors = int.Parse(Console.ReadLine());
+        int flats = int.Parse(Console.ReadLine());
+        string[] time = Console.ReadLine().Split(':');
+
+        double lampConsumption = 100.53;
+        double computerConsumption = 125.90;
+        int totalRooms = floors * flats;
+
+        int hours = int.Parse(time[0]);
+        int minutes = int.Parse(time[1]);
+        double totalWatts = 0;
+
+        if (hours >= 14 && hours <19)
+            totalWatts = totalRooms * (lampConsumption * 2 + computerConsumption * 2);    
+        else if (hours >= 19 && hours < 24)
+            totalWatts = totalRooms * (lampConsumption * 7 + computerConsumption * 6);
+        else if (hours >= 00 && hours < 9)
+            totalWatts = totalRooms * (lampConsumption + computerConsumption * 8);
+        Console.WriteLine("{0} Watts", Math.Truncate(totalWatts));
+    }
+}
