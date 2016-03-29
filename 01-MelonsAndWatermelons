@@ -1,0 +1,57 @@
+using System;
+class MelonsAndWatermelons
+{
+    static void Main(string[] args)
+    {
+        int startingDay = int.Parse(Console.ReadLine());
+        int sequentialDays = int.Parse(Console.ReadLine());
+
+        int melons = 0;
+        int watermelons = 0;
+
+        for (int day = 1; day <= sequentialDays; day++)
+        {
+            if (startingDay % 7 == 1)
+            {
+                watermelons++;
+                startingDay++;
+            }
+            else if (startingDay % 7 == 2)
+            {
+                melons += 2;
+                startingDay++;
+            }
+            else if (startingDay % 7 == 3)
+            {
+                watermelons++;
+                melons++;
+                startingDay++;
+            }
+            else if (startingDay % 7 == 4)
+            {
+                watermelons+=2;
+                startingDay++;
+            }
+            else if (startingDay % 7 == 5)
+            {
+                watermelons += 2;
+                melons += 2;
+                startingDay++;
+            }
+            else if (startingDay % 7 == 6)
+            {
+                watermelons += 1;
+                melons += 2;
+                startingDay++;
+            }
+            else if (startingDay % 7 == 0)
+                startingDay = 1;
+        }
+        if (melons == watermelons)
+            Console.WriteLine("Equal amount: {0}", melons);
+        else if (melons > watermelons)
+            Console.WriteLine("{0} more melons", melons - watermelons);
+        else if (watermelons > melons)
+            Console.WriteLine("{0} more watermelons", watermelons - melons);
+    }
+}
