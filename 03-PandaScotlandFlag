@@ -1,0 +1,64 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        char a = 'A';
+        int leftRight = 1;
+        int inside = n - 4;
+        if (n == 1)
+        {
+            Console.WriteLine("A");
+            return;
+        }
+        Console.Write(a);
+        Console.Write(new string('#', n - 2));
+        Console.WriteLine((char)(a + 1));
+
+        a = (char)(a + 2);
+        for (int row = 1; row <= (n+1)/2 - 2; row++)
+        {
+            Console.Write(new string('~', leftRight));
+            if (a == '[')
+                a = (char) ('A');
+            Console.Write((char)(a));
+            Console.Write(new string('#', inside));
+            if (a == '[')
+                a = (char) ('A' + 1);
+            Console.Write((char)(a + 1));
+            Console.WriteLine(new string('~', leftRight));
+            leftRight++;
+            inside -= 2;     
+            a = (char)(a + 2);
+            if (a == '[' || a == '\\')
+                a = 'A';
+        }
+        Console.Write(new string('-', n/2));
+        Console.Write((char) (a));
+        Console.WriteLine(new string('-', n / 2));
+
+        a = (char)(a +1 );
+        leftRight = (n / 2) - 1;
+        inside = 1;
+        for (int row = 1; row <= (n + 1) / 2 - 1; row++)
+        {
+            if (a == '[')
+                a = 'A';
+            Console.Write(new string('~', leftRight));
+            if (a == '[')
+                a = 'A';
+            Console.Write((char)(a));
+            Console.Write(new string('#', inside));
+            if ((char) (a+1) == '[')
+                a = (char) ('A' - 1);
+            Console.Write((char)(a + 1));
+            Console.WriteLine(new string('~', leftRight));
+            leftRight--;
+            inside += 2;
+            a = (char)(a + 2);
+            if (a == '[' || a == '\\')
+                a = 'A';
+        }
+    }
+}
