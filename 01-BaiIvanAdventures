@@ -1,0 +1,55 @@
+using System;
+class BaiIvanAdventures
+{
+    static void Main(string[] args)
+    {
+        int dayOfWeek = int.Parse(Console.ReadLine());
+        decimal budget = decimal.Parse(Console.ReadLine());
+        decimal liters = decimal.Parse(Console.ReadLine());
+
+        decimal alchoholPrice = 0.0m;
+        string condition = String.Empty;
+
+        switch (dayOfWeek)
+        {
+            case 0:
+                alchoholPrice = 25.0m;
+                break;
+            case 1:
+                alchoholPrice = 21.0m;
+                break;
+            case 2:
+                alchoholPrice = 14.0m;
+                break;
+            case 3:
+                alchoholPrice = 17.0m;
+                break;
+            case 4:
+                alchoholPrice = 45.0m;
+                break;
+            case 5:
+                alchoholPrice = 59.0m;
+                break;
+            case 6:
+                alchoholPrice = 42.0m;
+                break;
+        }
+        decimal amountOfDrunkAlcohol = budget / alchoholPrice;
+        decimal costOfAlcohol = alchoholPrice * liters;
+        decimal remainingAlcohol = (budget - costOfAlcohol) / alchoholPrice;
+
+        if (amountOfDrunkAlcohol > 1.5m)
+            condition = "very drunk";
+        else if (amountOfDrunkAlcohol <= 1.5m && amountOfDrunkAlcohol >= 1.0m)
+            condition = "drunk";
+        else if (amountOfDrunkAlcohol < 1.0m)
+            condition = "sober";
+
+        if (amountOfDrunkAlcohol > liters)
+            Console.WriteLine("Bai Ivan is {0} and very happy and he shared {1:f2} l. of alcohol with his friends",condition, remainingAlcohol);
+        else if (amountOfDrunkAlcohol == liters)
+            Console.WriteLine("Bai Ivan is {0} and happy. He is as drunk as he wanted", condition);
+        else
+            Console.WriteLine("Bai Ivan is {0} and quite sad. He wanted to drink another {1:f2} l. of alcohol", condition, liters - amountOfDrunkAlcohol);
+    }
+}
