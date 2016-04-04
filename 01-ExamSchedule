@@ -1,0 +1,61 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int startingHour = int.Parse(Console.ReadLine());
+        int startingMinute = int.Parse(Console.ReadLine());
+        string amOrPm = Console.ReadLine().ToUpper();
+        int durationHour = int.Parse(Console.ReadLine());
+        int durationMinutes = int.Parse(Console.ReadLine());
+
+        int totalMinutes = durationMinutes + startingMinute;
+
+        if (durationMinutes + startingMinute >= 60)
+        {
+            durationHour++;
+            totalMinutes = durationMinutes + startingMinute - 60;
+        }
+        if (durationHour > 12 && amOrPm == "AM")
+        {
+            durationHour -= 12;
+            amOrPm = "PM";
+        }
+        else if (durationHour >= 12 && amOrPm == "PM")
+        {
+            durationHour -= 12;
+            amOrPm = "AM";
+        }
+
+        int finalHour = startingHour + durationHour;
+
+        if (amOrPm == "AM")
+        {
+            if (finalHour > 12)
+            {
+                finalHour -= 12;
+                amOrPm = "PM";
+            }
+            else if (finalHour == 12)
+            {
+                finalHour = 12;
+                amOrPm = "PM";
+            }
+            Console.WriteLine("{0:00}:{1:00}:{2}", finalHour, totalMinutes, amOrPm);
+        }
+        else if (amOrPm == "PM")
+        {
+            if (finalHour > 12)
+            {
+                finalHour -= 12;
+                amOrPm = "AM";
+            }
+            else if (finalHour == 12)
+            {
+                finalHour = 12;
+                amOrPm = "AM";
+            }
+            Console.WriteLine("{0:00}:{1:00}:{2}", finalHour, totalMinutes, amOrPm);
+        }
+    }
+}
