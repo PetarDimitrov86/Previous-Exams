@@ -1,0 +1,44 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        string text = Console.ReadLine();
+        string[] n = text.Split(' ');
+        decimal oddSum = 0.0m;
+        decimal oddMin = decimal.MaxValue;
+        decimal oddMax = decimal.MinValue;
+        decimal evenSum = 0.0m;
+        decimal evenMin = decimal.MaxValue;
+        decimal evenMax = decimal.MinValue;
+                if (text == "")
+        {
+            Console.WriteLine("OddSum=No, OddMin=No, OddMax=No, EvenSum=No, EvenMin=No, EvenMax=No");
+            return;
+        }
+        for (int i = 0; i < n.Length; i++)
+        {
+            decimal num = decimal.Parse(n[i]);
+            if (i % 2 == 0)
+            {
+                oddSum += num;
+                if (oddMax < num)
+                    oddMax = num;
+                if (oddMin > num)
+                    oddMin = num;
+            }
+            else if (i % 2 == 1)
+            {
+                evenSum += num;
+                if (evenMax < num)
+                    evenMax = num;
+                if (evenMin > num)
+                    evenMin = num;
+            }       
+        }
+        if (n.Length > 1)
+            Console.WriteLine("OddSum={0}, OddMin={1}, OddMax={2}, EvenSum={3}, EvenMin={4}, EvenMax={5}", oddSum.ToString("0.##"), oddMin.ToString("0.##"), oddMax.ToString("0.##"), evenSum.ToString("0.##"), evenMin.ToString("0.##"), evenMax.ToString("0.##"));
+        else if (n.Length == 1)
+            Console.WriteLine("OddSum={0}, OddMin={1}, OddMax={2}, EvenSum=No, EvenMin=No, EvenMax=No", oddSum.ToString("0.##"), oddMin.ToString("0.##"), oddMax.ToString("0.##"));
+    }
+}
