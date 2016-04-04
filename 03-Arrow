@@ -1,0 +1,61 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        Top(n);
+        FirstHalf(n);
+        Middle(n);
+        SecondHalf(n);
+        Bottom(n);
+    }
+
+    static void Top(int n)
+    {
+        Console.Write(new string('.', n / 2));
+        Console.Write(new string('#', n));
+        Console.WriteLine(new string('.', n / 2));
+    }
+
+    static void FirstHalf(int n)
+    {
+        for (int row = 1; row <= n-2; row++)
+        {
+            Console.Write(new string('.', n / 2));
+            Console.Write('#');
+            Console.Write(new string('.', n - 2));
+            Console.Write('#');
+            Console.WriteLine(new string('.', n / 2));
+        }
+    }
+
+    static void Middle(int n)
+    {
+        Console.Write(new string('#', (n / 2) +1));
+        Console.Write(new string('.', n - 2));
+        Console.WriteLine(new string('#', (n / 2) + 1));
+    }
+
+    static void SecondHalf(int n)
+    {
+        int leftRight = 1;
+        int inside = n + (n/2) + (n/2) - 4;
+        for (int row = 1; row <= n-2; row++)
+        {
+            Console.Write(new string ('.', leftRight));
+            Console.Write('#');
+            Console.Write(new string('.', inside));
+            Console.Write('#');
+            Console.WriteLine(new string('.', leftRight));
+            leftRight++;
+            inside -= 2;
+        }
+    }
+    static void Bottom (int n)
+    {
+        Console.Write(new string('.', n-1));
+        Console.Write("#");
+        Console.WriteLine(new string('.', n -1));
+    }
+}
