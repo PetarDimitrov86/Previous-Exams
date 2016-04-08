@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int numberOfOrders = int.Parse(Console.ReadLine());
+        long totalBooks = 0;
+        decimal totalPrice = 0;
+        for (int i = 0; i < numberOfOrders; i++)
+        {
+            int numberOfPackets = int.Parse(Console.ReadLine());
+            int booksPerPacket = int.Parse(Console.ReadLine());
+            decimal bookPrice = decimal.Parse(Console.ReadLine());
+
+            int discount = 0;
+            if (numberOfPackets >= 10 & numberOfPackets <= 109)
+                discount = numberOfPackets / 10 + 4;
+            if (numberOfPackets >= 110)
+                discount = 15;
+
+            decimal finalBookPrice = bookPrice - ((bookPrice * discount) / 100);
+            decimal result = numberOfPackets * booksPerPacket * finalBookPrice;
+
+            totalBooks += numberOfPackets * booksPerPacket;
+            totalPrice += result;
+        }
+        Console.WriteLine(totalBooks);
+        Console.WriteLine("{0:f2}",totalPrice);
+    }
+}
