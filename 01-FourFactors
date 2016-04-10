@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class Program
+{
+    static void Main(string[] args)
+    {
+        decimal fieldGoals = decimal.Parse(Console.ReadLine());
+        decimal FieldGoalAttempts = decimal.Parse(Console.ReadLine());
+        decimal ThreePointFieldGoals = decimal.Parse(Console.ReadLine());
+        decimal Turnovers = decimal.Parse(Console.ReadLine());
+        decimal OffensiveRebounds = decimal.Parse(Console.ReadLine());
+        decimal OpponentDefensiveRebounds = decimal.Parse(Console.ReadLine());
+        decimal freeThrows = decimal.Parse(Console.ReadLine());
+        decimal freeThrowAttempts = decimal.Parse(Console.ReadLine());
+
+        decimal eFGperc = (fieldGoals + 0.5m * ThreePointFieldGoals) / FieldGoalAttempts;
+        decimal TOVperc = Turnovers / (FieldGoalAttempts + 0.44m * freeThrowAttempts + Turnovers);
+        decimal oRBperc = OffensiveRebounds / (OffensiveRebounds + OpponentDefensiveRebounds);
+        decimal FTperc = freeThrows / FieldGoalAttempts;
+
+        Console.WriteLine("eFG% {0:f3}", eFGperc);
+        Console.WriteLine("TOV% {0:f3}", TOVperc);
+        Console.WriteLine("ORB% {0:f3}", oRBperc);
+        Console.WriteLine("FT% {0:f3}", FTperc);
+    }
+}
