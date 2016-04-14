@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int start = int.Parse(Console.ReadLine());
+        int end = int.Parse(Console.ReadLine());
+
+        bool exists = false;
+
+        for (char first = 'a'; first <= 'e'; first++)
+        {
+            for (char second = 'a'; second <= 'e'; second++)
+            {
+                for (char third = 'a'; third <= 'e'; third++)
+                {
+                    for (char fourth = 'a'; fourth <= 'e'; fourth++)
+                    {
+                        for (char fifth = 'a'; fifth <= 'e'; fifth++)
+                        {
+                            int weight = 0;                           
+                            List<char> result = new List<char>();
+                            if (!result.Contains(first))
+                                result.Add(first);
+                            if (!result.Contains(second))
+                                result.Add(second);
+                            if (!result.Contains(third))
+                                result.Add(third);
+                            if (!result.Contains(fourth))
+                                result.Add(fourth);
+                            if (!result.Contains(fifth))
+                                result.Add(fifth);
+
+                            for (int j = 0; j < result.Count; j++)
+                            {
+                                if (result[j] == 'a')
+                                    weight += (j + 1) * 5;
+                                if (result[j] == 'b')
+                                    weight += (j + 1) * (-12);
+                                if (result[j] == 'c')
+                                    weight += (j + 1) * 47;
+                                if (result[j] == 'd')
+                                    weight += (j + 1) * 7;
+                                if (result[j] == 'e')
+                                    weight += (j + 1) * (-32);
+                            }
+                            result.Clear();
+                            if (weight >= start && weight <= end)
+                            {
+                                Console.Write($"{first}{second}{third}{fourth}{fifth} ");
+                                exists = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Console.WriteLine();
+        if (exists == false)
+            Console.WriteLine("No");
+    }
+}
