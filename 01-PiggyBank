@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class PiggyBank
+{
+    static void Main(string[] args)
+    {
+        decimal tankPrice = decimal.Parse(Console.ReadLine());
+        int partyDays = int.Parse(Console.ReadLine());
+
+        int normalDays = 30 - partyDays;
+        int moneyEarnedPerMonth = normalDays * 2;
+        int moneySpentParty = partyDays * 5;
+        int moneyLeft = moneyEarnedPerMonth - moneySpentParty;
+
+        decimal totalMonths = Math.Ceiling(tankPrice / moneyLeft);
+        decimal leftoverMonths = totalMonths % 12;
+        int totalYears = (int)totalMonths / 12;
+
+        if (moneyLeft > 0)
+            Console.WriteLine("{0} years, {1} months", totalYears, leftoverMonths);
+        else
+            Console.WriteLine("never");
+    }
+}
