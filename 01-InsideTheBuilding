@@ -1,0 +1,46 @@
+using System;
+class InsideTheBuilding
+{
+    static void Main(string[] args)
+    {
+        int h = int.Parse(Console.ReadLine());
+        int x1 = int.Parse(Console.ReadLine());
+        int y1 = int.Parse(Console.ReadLine());
+        int x2 = int.Parse(Console.ReadLine());
+        int y2 = int.Parse(Console.ReadLine());
+        int x3 = int.Parse(Console.ReadLine());
+        int y3 = int.Parse(Console.ReadLine());
+        int x4 = int.Parse(Console.ReadLine());
+        int y4 = int.Parse(Console.ReadLine());
+        int x5 = int.Parse(Console.ReadLine());
+        int y5 = int.Parse(Console.ReadLine());
+
+        Console.WriteLine(Check(h, x1, y1));
+        Console.WriteLine(Check(h, x2, y2));
+        Console.WriteLine(Check(h, x3, y3));
+        Console.WriteLine(Check(h, x4, y4));
+        Console.WriteLine(Check(h, x5, y5));
+    }
+    static string Check(int h, int x, int y)
+    {
+        string result = string.Empty;
+        int underX1 = 0;
+        int underY1 = 0;
+        int underX2 = 3 * h;
+        int underY2 = h;
+
+        int upperX1 = h;
+        int upperY1 = h;
+        int upperX2 = 2 * h;
+        int upperY2 = 4 * h;
+
+        bool lowInside = x >= underX1 && x <= underX2 && y >= underY1 && y <= underY2;
+        bool lowUp = x >= upperX1 && x <= upperX2 && y >= upperY1 && y <= upperY2;
+
+        if (lowInside || lowUp)
+            result = "inside";
+        else
+            result = "outside";
+        return result;
+    }
+}
