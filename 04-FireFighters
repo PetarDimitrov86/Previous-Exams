@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class FireFighters
+{
+    static void Main(string[] args)
+    {
+        int firefighters = int.Parse(Console.ReadLine());
+        string peopleInBuilding = Console.ReadLine();
+        int kidsSaved = 0;
+        int adultsSaved = 0;
+        int seniorsSaved = 0;
+        int initialFirefighters = firefighters;
+
+        while (peopleInBuilding != "rain")
+        {
+            for (int i = 0; i < peopleInBuilding.Length && firefighters > 0; i++)
+            {
+                if (peopleInBuilding[i] == 'K')
+                {
+                    kidsSaved++;
+                    firefighters--;
+                }
+            }
+            for (int i = 0; i < peopleInBuilding.Length && firefighters > 0; i++)
+            {
+                if (peopleInBuilding[i] == 'A')
+                {
+                    adultsSaved++;
+                    firefighters--;
+                }
+            }
+            for (int i = 0; i < peopleInBuilding.Length && firefighters > 0; i++)
+            {
+                if (peopleInBuilding[i] == 'S')
+                {
+                    seniorsSaved++;
+                    firefighters--;
+                }
+            }
+            firefighters = initialFirefighters;
+            peopleInBuilding = Console.ReadLine();
+        }
+        Console.WriteLine("Kids: {0}", kidsSaved);
+        Console.WriteLine("Adults: {0}", adultsSaved);
+        Console.WriteLine("Seniors: {0}",seniorsSaved);
+    }
+}
