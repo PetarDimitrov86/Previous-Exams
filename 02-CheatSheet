@@ -1,0 +1,20 @@
+using System;
+class CheatSheet
+{
+    static void Main(string[] args)
+    {
+        long rows = long.Parse(Console.ReadLine());
+        long cols = long.Parse(Console.ReadLine());
+        long verticalStartNumber = long.Parse(Console.ReadLine());
+        long horizontalStartNumber = long.Parse(Console.ReadLine());
+
+        for (long i = verticalStartNumber; i < rows + verticalStartNumber; i++)
+        {
+            for (long j = horizontalStartNumber; j < cols + horizontalStartNumber; j++)
+            {
+                Console.Write("{0} ", i * j);
+            }
+            Console.WriteLine();
+        }
+    }
+}
