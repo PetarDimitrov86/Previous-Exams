@@ -1,0 +1,26 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int numberOfCables = int.Parse(Console.ReadLine());
+        int joinTimes = 0;
+        int totalCableLength = 0;
+        for (int i = 0; i < numberOfCables; i++)
+        {
+            int cableLength = int.Parse(Console.ReadLine());
+            string measure = Console.ReadLine();
+            if (measure == "meters")
+                cableLength *= 100;
+            if (cableLength < 20)
+                continue;
+            totalCableLength += cableLength;
+            joinTimes++;
+        }
+        totalCableLength = totalCableLength - (joinTimes - 1) * 3;
+        int possibleCables = totalCableLength / 504;
+        int leftover = totalCableLength % 504;
+        Console.WriteLine(possibleCables);
+        Console.WriteLine(leftover);
+    }
+}
