@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class Numerology
+{
+    static void Main(string[] args)
+    {
+        string[] input = Console.ReadLine().Split(new char[] { ' ', '.' }).ToArray();
+        int day = int.Parse(input[0]);
+        int month = int.Parse(input[1]);
+        int year = int.Parse(input[2]);
+        string name = input[3];
+
+        long multiply = day * month * year;
+        if (month % 2 == 1)
+            multiply = multiply * multiply;
+        for (int i = 0; i < name.Length; i++)
+        {
+            if (char.IsNumber(name[i]))
+                multiply += name[i] - 48;
+            if (char.IsLower(name[i]))
+                multiply += name[i] - 96;
+            if (char.IsUpper(name[i]))
+                multiply += (name[i] - 64) * 2;
+        }
+        long digitsSum = 0;
+        while (multiply > 0)
+        {
+            digitsSum += multiply % 10;
+            multiply /= 10;
+        }
+        if (digitsSum <= 13)
+        {
+            Console.WriteLine(digitsSum);
+            return;
+        }
+        long latestSum = 0;
+        while (digitsSum > 0)
+        {
+            latestSum += digitsSum % 10;
+            digitsSum /= 10;
+        }  
+        Console.WriteLine(latestSum);
+    }
+}
