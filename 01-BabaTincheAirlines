@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class BabaTincheAirlines
+{
+    static void Main(string[] args)
+    {
+        int[] first = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        int[] business = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        int[] economy = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+        int firstPassengers = first[0];
+        int businessPassengers = business[0];
+        int economyPassengers = economy[0];
+
+        int firstTicket = 7000;
+        int businessTicket = 3500;
+        int economyTicket = 1000;
+
+        int firstFreq = first[1];
+        int normalFirstFlyer = firstPassengers - firstFreq;
+        int businFreq = business[1];
+        int normalBusinFlyer = businessPassengers - businFreq;
+        int econFreq = economy[1];
+        int normalEconFlyer = economyPassengers - econFreq;
+
+        decimal firstClassIncome = normalFirstFlyer * firstTicket + (firstFreq * firstTicket * 0.3m) + (first[2] * 0.5m * firstTicket / 100);
+        decimal businessClassIncome = normalBusinFlyer * businessTicket + (businFreq * businessTicket * 0.3m) + (business[2] * 0.5m * businessTicket / 100);
+        decimal economyClassIncome = normalEconFlyer * economyTicket + (econFreq * economyTicket * 0.3m) + (economy[2] * 0.5m * economyTicket / 100);
+
+        decimal totalIncome = firstClassIncome + businessClassIncome + economyClassIncome;
+        Console.WriteLine((int)totalIncome);
+
+        decimal maximumIncome1 = 12 * 7000 + (12 * 0.5m * 7000 / 100);
+        decimal maximumIncome2 = 28 * 3500 + (28 * 0.5m * 3500 / 100);
+        decimal maximumIncome3 = 50 * 1000 + (50 * 0.5m * 1000 / 100);
+        decimal maximumIncome = maximumIncome1 + maximumIncome2 + maximumIncome3;
+        Console.WriteLine((int)maximumIncome - (int)totalIncome);
+    }
+}
