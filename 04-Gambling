@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class Gambling
+{
+    static void Main(string[] args)
+    {
+        decimal cash = decimal.Parse(Console.ReadLine());
+        string[] houseCards = Console.ReadLine().Split(' ').ToArray();
+
+        int houseStrenght = 0;
+        int combinations = 0;
+        int winningCombinations = 0;
+        foreach (var item in houseCards)
+        {
+            switch (item)
+            {
+                case "J": houseStrenght += 11; break;
+                case "Q": houseStrenght += 12; break;
+                case "K": houseStrenght += 13; break;
+                case "A": houseStrenght += 14; break;
+                default:
+                    houseStrenght += int.Parse(item);
+                    break;
+            }
+        }
+        for (int card1 = 2; card1 < 15; card1++)
+        {
+            for (int card2 = 2; card2 < 15; card2++)
+            {
+                for (int card3 = 2; card3 < 15; card3++)
+                {
+                    for (int card4 = 2; card4 < 15; card4++)
+                    {
+                        combinations++;
+                        if (card1+card2+card3+card4 > houseStrenght)
+                            winningCombinations++;
+                    }
+                }
+            }
+        }
+        decimal percent = (decimal)winningCombinations / combinations;
+        if (percent < 0.50m)
+        {
+            Console.WriteLine("FOLD");
+            Console.WriteLine("{0:f2}", 2 * cash * percent);
+        }
+        else
+        {
+            Console.WriteLine("DRAW");
+            Console.WriteLine("{0:f2}", 2 * cash * percent);
+        }
+    }
+}
