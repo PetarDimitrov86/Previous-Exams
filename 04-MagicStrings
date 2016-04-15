@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int diff = int.Parse(Console.ReadLine());
+
+        char[] letters = new char[4] { 'k', 'n', 'p', 's' };
+        int leftWeight = 0;
+        int rightWeight = 0;
+        bool found = false;
+        string result1 = String.Empty;
+        string result2 = String.Empty;
+        for (int firstLetterL = 0; firstLetterL < letters.Length; firstLetterL++)
+        {
+            for (int secondLetterL = 0; secondLetterL < letters.Length; secondLetterL++)
+            {
+                for (int thirdLetterL = 0; thirdLetterL < letters.Length; thirdLetterL++)
+                {
+                    for (int fourthLetterL = 0; fourthLetterL < letters.Length; fourthLetterL++)
+                    {
+                        int firstLetterWeightL = LetterWeight(letters[firstLetterL]);
+                        int secondLetterWeightL = LetterWeight(letters[secondLetterL]);
+                        int thirdLetterWeightL = LetterWeight(letters[thirdLetterL]);
+                        int fourthLetterWeightL = LetterWeight(letters[fourthLetterL]);
+                        leftWeight = firstLetterWeightL + secondLetterWeightL + thirdLetterWeightL + fourthLetterWeightL;
+                        result1 = "" + letters[firstLetterL] + letters[secondLetterL] + letters[thirdLetterL] + letters[fourthLetterL];
+
+                        for (int firstLetterR = 0; firstLetterR < letters.Length; firstLetterR++)
+                        {
+                            for (int secondLetterR = 0; secondLetterR < letters.Length; secondLetterR++)
+                            {
+                                for (int thirdLetterR = 0; thirdLetterR < letters.Length; thirdLetterR++)
+                                {
+                                    for (int fourthLetterR = 0; fourthLetterR < letters.Length; fourthLetterR++)
+                                    {
+                                        int firstLetterWeightR = LetterWeight(letters[firstLetterR]);
+                                        int secondLetterWeightR = LetterWeight(letters[secondLetterR]);
+                                        int thirdLetterWeightR = LetterWeight(letters[thirdLetterR]);
+                                        int fourthLetterWeightR = LetterWeight(letters[fourthLetterR]);
+                                        rightWeight = firstLetterWeightR + secondLetterWeightR + thirdLetterWeightR + fourthLetterWeightR;
+                                        result2 = "" + letters[firstLetterR] + letters[secondLetterR] + letters[thirdLetterR] + letters[fourthLetterR];
+
+                                        if (Math.Abs(rightWeight - leftWeight) == diff)
+                                        {
+                                            found = true;
+                                                Console.WriteLine(result1 + result2);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (found == false)
+            Console.WriteLine("No");
+    }
+    static int LetterWeight(char c)
+    {
+        int weight = 0;
+        switch (c)
+        {
+            case 's': weight = 3; break;
+            case 'n': weight = 4; break;
+            case 'k': weight = 1; break;
+            case 'p': weight = 5; break;
+        }
+        return weight;
+    }
+}
