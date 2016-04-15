@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class MagicCarNumbers
+{
+    static void Main(string[] args)
+    {
+        int magicWeight = int.Parse(Console.ReadLine());
+        char[] letters = new char[10] { 'A', 'B', 'C', 'E', 'H', 'K', 'M', 'P', 'T', 'X' };
+        string result = "CA";
+        int weightOfCarNumber = 0;
+        int counter = 0;
+
+        for (int firstDigit = 0; firstDigit < 10; firstDigit++)
+        {
+            for (int secondDigit = 0; secondDigit < 10; secondDigit++)
+            {
+                for (int thirdDigit = 0; thirdDigit < 10; thirdDigit++)
+                {
+                    for (int fourthDigit = 0; fourthDigit < 10; fourthDigit++)
+                    {
+                        for (int firstLetter = 0; firstLetter < letters.Length; firstLetter++)
+                        {
+                            for (int secondLetter = 0; secondLetter < letters.Length; secondLetter++)
+                            {
+                                bool FirstMagicNums = firstDigit == secondDigit && secondDigit == thirdDigit && thirdDigit == fourthDigit;
+                                bool SecondMagicNums = secondDigit == thirdDigit && thirdDigit == fourthDigit;
+                                bool ThirdMagicNums = firstDigit == secondDigit && secondDigit == thirdDigit;
+                                bool FourthMagicNums = firstDigit == secondDigit && thirdDigit == fourthDigit;
+                                bool FifthMagicNums = firstDigit == thirdDigit && secondDigit == fourthDigit;
+                                bool SixthMagicNums = firstDigit == fourthDigit && secondDigit == thirdDigit;
+ 
+                                result += ""  + letters[firstLetter] + letters[secondLetter];
+                                for (int i = 0; i < result.Length; i++)
+                                    weightOfCarNumber += (result[i] - 64)*10;
+                                weightOfCarNumber += firstDigit + secondDigit + thirdDigit + fourthDigit;
+                                if (weightOfCarNumber == magicWeight && (FirstMagicNums || SecondMagicNums || ThirdMagicNums || FourthMagicNums || FifthMagicNums || SixthMagicNums))
+                                    counter++;
+                                result = "CA";
+                                weightOfCarNumber = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Console.WriteLine(counter);
+    }
+}
