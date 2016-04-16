@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class VehiclePark
+{
+    static void Main(string[] args)
+    {
+        List<string> carsAvailable = Console.ReadLine().ToLower().Split(' ').ToList();
+
+        decimal vehiclesSold = 0;
+        string input = Console.ReadLine().ToLower();
+        while (input != "end of customers!")
+        {
+            string[] command = input.Split(' ').ToArray();
+            string vehicleFull = command[0];
+            char carType = vehicleFull[0];
+            decimal capacitySearched = decimal.Parse(command[2]);
+            decimal vehicleValue = 0;
+
+            foreach (var item in carsAvailable)
+            {
+                if (carType.ToString() + capacitySearched.ToString() + "" == item)
+                {
+                    vehicleValue = carType * capacitySearched;
+                    vehiclesSold++;
+                    carsAvailable.Remove(item);
+                    break;
+                }
+            }
+            if (vehicleValue != 0)
+                Console.WriteLine("Yes, sold for {0}$", vehicleValue);
+            else
+                Console.WriteLine("No");
+            input = Console.ReadLine().ToLower();
+        }
+        Console.WriteLine("Vehicles left: {0}", string.Join(", ", carsAvailable));
+        Console.WriteLine("Vehicles sold: {0}", vehiclesSold);
+    }
+}
