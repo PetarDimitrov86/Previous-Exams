@@ -1,0 +1,49 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        int gryffindorCounter = 0;
+        int slytherinCounter = 0;
+        int ravenclaw = 0;
+        int hufflepuff = 0;
+        for (int i = 0; i < n; i++)
+        {
+            string name = Console.ReadLine();
+            string[] nameSplit = new string[2];
+            nameSplit = name.Split(' ');
+            char FirstLetterName = nameSplit[0][0];
+            char FirstLetterSecondName = nameSplit[1][0];
+            int nameIntSum = 0;
+            name = name.Replace(" ", "");
+            for (int j = 0; j < name.Length; j++)
+                nameIntSum += name[j];
+            if (nameIntSum % 4 == 0)
+            {
+                gryffindorCounter++;
+                Console.WriteLine("Gryffindor {0}{1}{2}", nameIntSum, FirstLetterName, FirstLetterSecondName);
+            }
+            if (nameIntSum % 4 == 1)
+            {
+                slytherinCounter++;
+                Console.WriteLine("Slytherin {0}{1}{2}", nameIntSum, FirstLetterName, FirstLetterSecondName);
+            }
+            if (nameIntSum % 4 == 2)
+            {
+                ravenclaw++;
+                Console.WriteLine("Ravenclaw {0}{1}{2}", nameIntSum, FirstLetterName, FirstLetterSecondName);
+            }
+            if (nameIntSum % 4 == 3)
+            {
+                hufflepuff++;
+                Console.WriteLine("Hufflepuff {0}{1}{2}", nameIntSum, FirstLetterName, FirstLetterSecondName);
+            }
+        }
+        Console.WriteLine();
+        Console.WriteLine("Gryffindor: {0}", gryffindorCounter);
+        Console.WriteLine("Slytherin: {0}", slytherinCounter);
+        Console.WriteLine("Ravenclaw: {0}", ravenclaw);
+        Console.WriteLine("Hufflepuff: {0}", hufflepuff);
+    }
+}
