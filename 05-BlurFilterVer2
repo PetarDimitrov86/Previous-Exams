@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class Program
+{
+    static void Main()
+    {
+        decimal blurAmount = decimal.Parse(Console.ReadLine());
+        int[] rowsCols = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        int rows = rowsCols[0];
+        int cols = rowsCols[1];
+        decimal[,] matrix = new decimal[rows, cols];
+
+        for (int row = 0; row < rows; row++)
+        {
+            decimal[] cells = Console.ReadLine().Split(' ').Select(decimal.Parse).ToArray();
+            for (int col = 0; col < cols; col++)
+            {
+                matrix[row, col] = cells[col];
+            }
+        }
+
+        int[] target = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        int targetRow = target[0];
+        int targetCol = target[1];
+
+        for (int i = targetRow - 1; i <= targetRow + 1; i++)
+        {
+            for (int j = targetCol - 1; j <= targetCol + 1; j++)
+            {
+                if (i >= 0 && i <= rows - 1 && j >= 0 && j <= cols - 1)
+                {
+                    matrix[i, j] += blurAmount;
+                }
+            }
+        }
+
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < cols; col++)
+            Console.Write(matrix[row, col] + " ");
+            Console.WriteLine();
+        }
+    }
+}
