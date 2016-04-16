@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class Program
+{
+    static void Main(string[] args)
+    {
+        decimal blur = decimal.Parse(Console.ReadLine());
+        int[] matStats = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+        int rows = matStats[0];
+        int cols = matStats[1];
+        int[,] matrix = new int[rows, cols];
+        for (int row = 0; row < rows; row++)
+        {
+            int[] cells = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            for (int col = 0; col < cols; col++)
+                matrix[row, col] = cells[col];
+        }
+        int[] blurCoordinates = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        int blurX = blurCoordinates[0];
+        int blurY = blurCoordinates[1];
+
+        decimal[,] bigMatrix = new decimal[rows + 2, cols + 2];
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < cols; col++)
+                bigMatrix[row + 1, col + 1] = matrix[row, col];
+        }
+        blurX++;
+        blurY++;
+        bigMatrix[blurX - 1, blurY - 1] += blur;
+        bigMatrix[blurX - 1, blurY] += blur;
+        bigMatrix[blurX - 1, blurY + 1] += blur;
+        bigMatrix[blurX, blurY - 1] += blur;
+        bigMatrix[blurX, blurY] += blur;
+        bigMatrix[blurX, blurY + 1] += blur;
+        bigMatrix[blurX + 1, blurY - 1] += blur;
+        bigMatrix[blurX + 1, blurY] += blur;
+        bigMatrix[blurX + 1, blurY + 1] += blur;
+
+        for (int row = 1; row < rows + 1; row++)
+        {
+            for (int col = 1; col < cols +1; col++)
+                Console.Write(bigMatrix[row, col] + " ");
+            Console.WriteLine();
+        }
+    }
+}
