@@ -1,0 +1,32 @@
+using System;
+class Nacepin
+{
+    static void Main(string[] args)
+    {
+        decimal usPrice = decimal.Parse(Console.ReadLine());
+        long usWeight = long.Parse(Console.ReadLine());
+        decimal ukPrice = decimal.Parse(Console.ReadLine());
+        long ukWeight = long.Parse(Console.ReadLine());
+        decimal chiPrice = decimal.Parse(Console.ReadLine());
+        long chiWeight = long.Parse(Console.ReadLine());
+
+        decimal usInLeva = usPrice / 0.58m;
+        decimal ukInLeva = ukPrice / 0.41m;
+        decimal chiInLeva = chiPrice * 0.27m;
+
+        decimal usLevaPerKG = usInLeva / usWeight;
+        decimal ukLevaPerKG = ukInLeva / ukWeight;
+        decimal chiLevaPerKG = chiInLeva / chiWeight;
+
+        decimal lowestPrice = Math.Min(usLevaPerKG, Math.Min(ukLevaPerKG, chiLevaPerKG));
+        decimal highestPrice = Math.Max(usLevaPerKG, Math.Max(ukLevaPerKG, chiLevaPerKG));
+
+        if (lowestPrice == chiLevaPerKG)
+            Console.WriteLine("Chinese store. {0:f2} lv/kg", lowestPrice);
+        else if (lowestPrice == usLevaPerKG)
+            Console.WriteLine("US store. {0:f2} lv/kg", lowestPrice);
+        else if (lowestPrice == ukLevaPerKG)
+            Console.WriteLine("UK store. {0:f2} lv/kg", lowestPrice);
+        Console.WriteLine("Difference {0:f2} lv/kg", highestPrice - lowestPrice);
+    }
+}
