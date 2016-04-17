@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class TextBombardment
+{
+    static void Main(string[] args)
+    {
+        string input = Console.ReadLine();
+        int lineWidth = int.Parse(Console.ReadLine());
+        int[] bombedCols = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+        int counter = bombedCols.Length - 1;
+        int currentTarget = 0;
+        int magicNumber = 0;
+        bool bombDeactivated = true;
+        bool[] bombActive = new bool[bombedCols.Length];
+        while (counter >= 0)
+        {
+            bombDeactivated = true;
+            bombActive[currentTarget] = false;
+            string newResult = String.Empty;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (i == lineWidth * magicNumber + bombedCols[currentTarget] && bombDeactivated)
+                {
+                    if (input[i] == ' ')
+                    {
+                        newResult += input[i];
+                        magicNumber++;
+                        continue;
+                    }
+                    else
+                    {
+                        bombActive[currentTarget] = true;
+                        bombDeactivated = false;
+                    }
+                }
+                if (i == lineWidth*magicNumber + bombedCols[currentTarget] && bombActive[currentTarget])
+                {
+                    if (input[i] == ' ')
+                    {
+                        bombActive[currentTarget] = false;
+                    }
+
+                    if (input[i] == ' ' && counter == bombedCols.Length && bombActive[currentTarget])
+                    {
+                        newResult += " ";
+                        newResult += input[i];
+                        continue;
+                    }
+                    newResult += " ";
+                    magicNumber++;
+                }
+                else
+                    newResult += input[i];             
+            }
+            input = newResult;         
+            magicNumber = 0;
+            currentTarget++;
+            counter--;
+        }   
+      Console.WriteLine(input);
+    }
+}
