@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class CrossingSequences
+{
+    static void Main(string[] args)
+    {
+        long firstTrib = long.Parse(Console.ReadLine());
+        long secondTrib = long.Parse(Console.ReadLine());
+        long thirdTrib = long.Parse(Console.ReadLine());
+        long TribNum = 0;
+
+        List <long> tribList = new List<long>();
+        tribList.Add(firstTrib);
+        tribList.Add(secondTrib);
+        tribList.Add(thirdTrib);
+
+        long spiralNum = long.Parse(Console.ReadLine());
+        long spiralStep = long.Parse(Console.ReadLine());
+        long nextSpiralNum = 0;
+        long counter = 0;
+        long multiplyer = 1;
+        if (tribList.Contains(spiralNum))
+        {
+            Console.WriteLine(spiralNum);
+            return;
+        }
+        while (TribNum <= 1000000 || nextSpiralNum <= 1000000)
+        {
+            if (TribNum <= 1000000)
+            {
+                TribNum = firstTrib + secondTrib + thirdTrib;
+                tribList.Add(TribNum);
+                firstTrib = secondTrib;
+                secondTrib = thirdTrib;
+                thirdTrib = TribNum;
+            }
+            nextSpiralNum = spiralNum + spiralStep * multiplyer;
+            spiralNum = nextSpiralNum;
+            counter++;
+            if (counter == 2)
+            {
+                counter = 0;
+                multiplyer++;
+            }
+            if (tribList.Contains(spiralNum))
+            {
+                Console.WriteLine(spiralNum);
+                return;
+            }
+        }
+        Console.WriteLine("No");
+    }
+}
