@@ -1,0 +1,25 @@
+using System;
+class Cinema
+{
+    static void Main(string[] args)
+    {
+        string Type = Console.ReadLine();
+        int rows = int.Parse(Console.ReadLine());
+        int cols = int.Parse(Console.ReadLine());
+
+        decimal cost = 0.0m;
+        switch (Type)
+        {
+            case "Premiere":
+                cost = 12.0m;
+                break;
+            case "Normal":
+                cost = 7.50m;
+                break;
+            case "Discount":
+                cost = 5.0m;
+                break;
+        }
+        Console.WriteLine($"{cost*rows*cols:f2} leva");
+    }
+}
