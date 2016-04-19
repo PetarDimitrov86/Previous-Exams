@@ -1,0 +1,17 @@
+using System;
+class JoroTheFootballPlayer
+{
+    static void Main(string[] args)
+    {
+        string yearType = Console.ReadLine();
+        decimal holidaysPerYear = decimal.Parse(Console.ReadLine());
+        decimal hometownWeekends = decimal.Parse(Console.ReadLine());
+
+        decimal normalWeekends = 52 - hometownWeekends;
+        decimal joroPlayTime = holidaysPerYear / 2 + normalWeekends * 2 / 3 + hometownWeekends;
+        int totalPlay = (int)Math.Floor(joroPlayTime);
+        if (yearType == "t")
+            totalPlay += 3;
+        Console.WriteLine(totalPlay);
+    }
+}
