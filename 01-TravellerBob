@@ -1,0 +1,28 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        string text = Console.ReadLine();
+        int contractMonths = int.Parse(Console.ReadLine());
+        int familyMonths = int.Parse(Console.ReadLine());
+
+        int normalMonths = 12 - contractMonths - familyMonths;
+        double totalTravels = 0;
+        if (text == "leap")
+        {
+            totalTravels += (double) contractMonths * 12;
+            totalTravels += (double) familyMonths * 4;
+            totalTravels += (double) normalMonths * 12 * 0.6;
+            totalTravels += 0.05d * (double) totalTravels;
+        }
+        else if (text == "normal")
+        {
+
+            totalTravels += (double)contractMonths * 12;
+            totalTravels += (double)familyMonths * 4;
+            totalTravels += (double)normalMonths * 12 * 0.6;
+        }
+        Console.WriteLine(Math.Floor(totalTravels));
+    }
+}
