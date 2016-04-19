@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class Illuminati
+{
+    static void Main(string[] args)
+    {
+        string input = Console.ReadLine().ToUpper();
+        int vowelsSum = 0;
+        int counter = 0;
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (input[i] == 'A' || input[i] == 'I' || input[i] == 'E' || input[i] == 'O' || input[i] == 'U')
+            {
+                counter++;
+                vowelsSum += input[i];
+            }
+        }
+        Console.WriteLine(counter);
+        Console.WriteLine(vowelsSum);
+    }
+}
