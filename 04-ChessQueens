@@ -1,0 +1,76 @@
+using System;
+class ChessQueens
+{
+    static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        int distance = int.Parse(Console.ReadLine());
+        distance++;
+        int rows = n;
+        int cols = n;
+        bool valid = false;
+        string[,] matrix = new string[rows, cols];
+        int value = 1;
+        char letter = 'a';
+        for (int row = 0; row < n; row++)
+        {       
+            for (int col = 0; col <n; col++)
+            {
+                matrix[row, col] = "" + letter + (col + 1).ToString();
+                value++;
+            }
+            letter++;
+        }
+        #region Same Row Check
+
+        for (int row = 0; row < n; row++)
+        {
+            for (int col = 0; col < n; col++)
+            {
+                    if (col + distance < n && int.Parse(matrix[row, col + distance].Substring(1)) == int.Parse(matrix[row, col].Substring(1)) + distance)
+                {
+                    Console.WriteLine($"{matrix[row, col]} - {matrix[row, col + distance]}");
+                    Console.WriteLine($"{matrix[row, col + distance]} - {matrix[row, col]}");
+                    valid = true;
+                }
+            }
+        }
+        #endregion
+        #region Same Column Check
+        for (int row = 0; row < n; row++)
+        {
+            for (int col = 0; col < n; col++)
+            {
+                    if (row + distance < n && matrix[row + distance, col][0] == matrix[row, col][0] + distance)
+                {
+                    Console.WriteLine($"{matrix[row, col]} - {matrix[row + distance, col]}");
+                    Console.WriteLine($"{matrix[row + distance, col]} - {matrix[row, col]}");
+                    valid = true;
+                }
+            }
+        }
+        #endregion
+        #region Diagonal Check
+        for (int row = 0; row < n; row++)
+        {
+            for (int col = 0; col < n; col++)
+            {
+                if (row + distance < n && col + distance < n && matrix[row + distance, col + distance][0] == matrix[row, col][0] + distance && int.Parse(matrix[row + distance, col + distance].Substring(1)) == int.Parse(matrix[row, col].Substring(1)) + distance)
+                {
+                    Console.WriteLine($"{matrix[row, col]} - {matrix[row + distance, col + distance]}");
+                    Console.WriteLine($"{matrix[row + distance, col + distance]} - {matrix[row, col]}");
+                    valid = true;
+                }
+                if (row + distance < n && col + distance < n && matrix[row, col + distance][0] == matrix[row + distance, col][0] - distance && int.Parse(matrix[row, col + distance].Substring(1)) == int.Parse(matrix[row + distance, col].Substring(1)) + distance)
+                {
+                    Console.WriteLine($"{matrix[row + distance, col]} - {matrix[row, col + distance]}");
+                    Console.WriteLine($"{matrix[row, col + distance]} - {matrix[row + distance, col]}");
+                    valid = true;
+                }
+            }
+        }
+        #endregion
+        if (valid == false)
+            Console.WriteLine("No valid positions");
+    }
+}
