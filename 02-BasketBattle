@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class BasketBattle
+{
+    static void Main(string[] args)
+    {
+        string name = Console.ReadLine();
+        int n = int.Parse(Console.ReadLine());
+        string secondPlayerName = string.Empty;
+        if (name == "Nakov")
+            secondPlayerName = "Simeon";
+        else
+            secondPlayerName = "Nakov";
+
+        int firstPlayerPoints = 0;
+        int secondPlayerPoints = 0;
+        int roundcount = 0;
+
+        while (n > 0)
+        {
+            roundcount++;        
+                int points = int.Parse(Console.ReadLine());
+                string attempt = Console.ReadLine();
+
+            if (roundcount % 2 == 1)
+            {
+                if (attempt == "success")
+                    firstPlayerPoints += points;
+                if (firstPlayerPoints > 500)
+                    firstPlayerPoints -= points;
+
+                if (firstPlayerPoints == 500)
+                {
+                    Console.WriteLine(name);
+                    Console.WriteLine(roundcount);
+                    Console.WriteLine(secondPlayerPoints);
+                    return;
+                }
+                points = int.Parse(Console.ReadLine());
+                attempt = Console.ReadLine();
+                if (attempt == "success")
+                    secondPlayerPoints += points;
+                if (secondPlayerPoints > 500)
+                    secondPlayerPoints -= points;
+                if (secondPlayerPoints == 500)
+                {
+                    Console.WriteLine(secondPlayerName);
+                    Console.WriteLine(roundcount);
+                    Console.WriteLine(firstPlayerPoints);
+                    return;
+                }
+            }
+            if (roundcount % 2 == 0)
+            {
+                if (attempt == "success")
+                    secondPlayerPoints += points;
+                if (secondPlayerPoints > 500)
+                    secondPlayerPoints -= points;
+                if (secondPlayerPoints == 500)
+                {
+                    Console.WriteLine(secondPlayerName);
+                    Console.WriteLine(roundcount);
+                    Console.WriteLine(firstPlayerPoints);
+                    return;
+                }
+
+                points = int.Parse(Console.ReadLine());
+                attempt = Console.ReadLine();
+
+                if (attempt == "success")
+                    firstPlayerPoints += points;
+                if (firstPlayerPoints > 500)
+                    firstPlayerPoints -= points;
+                if (firstPlayerPoints == 500)
+                {
+                    Console.WriteLine(name);
+                    Console.WriteLine(roundcount);
+                    Console.WriteLine(secondPlayerPoints);
+                    return;
+                }
+            }
+
+            if (firstPlayerPoints > secondPlayerPoints && n == 1)
+            {
+                Console.WriteLine(name);
+                Console.WriteLine(Math.Abs(firstPlayerPoints - secondPlayerPoints));
+            }
+            else if (firstPlayerPoints < secondPlayerPoints && n == 1)
+            {
+                Console.WriteLine(secondPlayerName);
+                Console.WriteLine(Math.Abs(firstPlayerPoints - secondPlayerPoints));
+            }
+            if (n == 1 && firstPlayerPoints == secondPlayerPoints)
+            {
+                Console.WriteLine("DRAW");
+                Console.WriteLine(firstPlayerPoints);
+            }
+            n--;
+        }
+    }
+}
