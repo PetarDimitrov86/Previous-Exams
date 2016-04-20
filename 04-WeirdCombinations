@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+class WeirdCombinations
+{
+    static void Main(string[] args)
+    {
+        string input = Console.ReadLine();
+        int n = int.Parse(Console.ReadLine());
+        List<string> resultList = new List<string>(); 
+        for (int L1 = 0; L1 < 5; L1++)
+            for (int L2 = 0; L2 < 5; L2++)
+                for (int L3 = 0; L3 < 5; L3++)
+                    for (int L4 = 0; L4 < 5; L4++)
+                        for (int L5 = 0; L5 < 5; L5++)
+                            resultList.Add($"{input[L1]}{input[L2]}{input[L3]}{input[L4]}{input[L5]}");
+        if (resultList.Count > n)
+            Console.WriteLine(resultList[n]);
+        else
+            Console.WriteLine("No");
+    }
+}
