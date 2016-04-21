@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+    class Blur
+    {
+        static void Main(string[] args)
+        {
+            int amount = int.Parse(Console.ReadLine());
+
+            int[] dimensions = Console.ReadLine().Split().Select(int.Parse).ToArray();//3 3
+            int totalRows = dimensions[0];//3
+            int totalCols = dimensions[1];//3
+            int[,] matrix = new int[totalRows, totalCols];
+            for (int row = 0; row < totalRows; row++)
+            {
+                int[] inputelements = Console.ReadLine().Split().Select(int.Parse).ToArray();
+                for (int col = 0; col < totalCols; col++)
+                {
+                    matrix[row, col] = inputelements[col];
+                }
+            }
+
+            int[] blurcoord = Console.ReadLine().Split().Select(int.Parse).ToArray();//1 1
+            int blurRow = blurcoord[0];//1
+            int blurCol = blurcoord[1];//1
+
+            int limitMatrixFirstRow = Math.Max(0, blurRow-1);//0
+            int limitMatrixFirstCol = Math.Max(0, blurCol - 1);//0
+            int limitMatrixLastRow = Math.Min(totalRows-1, blurRow + 1);//2
+            int limitMatrixLastCol = Math.Min(totalCols-1, blurCol + 1);//2
+
+            int[,] limitmatrix = new int[limitMatrixLastRow, limitMatrixLastCol];
+
+            for (int row = limitMatrixFirstRow; row <= limitMatrixLastRow; row++)
+            {
+                for (int col = limitMatrixFirstCol; col <= limitMatrixLastCol; col++)
+                {
+                    matrix[row,col] += amount;
+                }
+            }
+
+            for (int row = 0; row < totalRows; row++)
+            {
+                for (int col = 0; col < totalCols; col++)
+                    Console.Write(matrix[row,col]+" ");
+                Console.WriteLine();
+            }
+        }
+    }
+}
