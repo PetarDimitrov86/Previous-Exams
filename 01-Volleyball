@@ -1,0 +1,17 @@
+using System;
+class Volleyball
+{
+    static void Main(string[] args)
+    {
+        string year = Console.ReadLine();
+        decimal holidays = decimal.Parse(Console.ReadLine());
+        decimal hometownWeekends = decimal.Parse(Console.ReadLine());
+
+        decimal normalWeekends = 48 - hometownWeekends;
+
+        decimal totalPlays = hometownWeekends + (holidays * 2.0m) / 3.0m + (normalWeekends * 3.0m) / 4.0m;
+        if (year == "leap")
+            totalPlays += (15 * totalPlays) / 100m;
+        Console.WriteLine(Math.Floor(totalPlays));
+    }
+}
