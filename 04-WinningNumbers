@@ -1,0 +1,40 @@
+using System;
+class WinningNumbers
+{
+    static void Main(string[] args)
+    {
+        string input = Console.ReadLine().ToLower();
+        bool exist = false;
+        int letSum = 0;
+        for (int i = 0; i < input.Length; i++)
+            letSum += input[i] - 96;
+
+        for (int firstDigits = 100; firstDigits <= 999; firstDigits++)
+        {
+            for (int secondDigits = 100; secondDigits <= 999; secondDigits++)
+            {
+                int firstNum = firstDigits;
+                int secondNum = secondDigits;
+                int firstDigitsProd = 1;
+                int secondDigitsProd = 1;
+                while (firstNum > 0)
+                {
+                    firstDigitsProd *= firstNum % 10;
+                    firstNum /= 10;
+                }
+                while (secondNum > 0)
+                {
+                    secondDigitsProd *= secondNum % 10;
+                    secondNum /= 10;
+                }
+                if (secondDigitsProd == firstDigitsProd && firstDigitsProd == letSum)
+                {
+                    Console.WriteLine($"{firstDigits}-{secondDigits}");
+                    exist = true;
+                }
+            }
+        }
+        if (exist == false)
+            Console.WriteLine("No");
+    }
+}
