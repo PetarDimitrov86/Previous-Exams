@@ -1,0 +1,34 @@
+using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        decimal numberOfCabins = decimal.Parse(Console.ReadLine());
+        string commandLines = Console.ReadLine();
+        decimal stepsTaken = 0;
+        decimal currentPosition = 0;
+        while (commandLines != "Found a free one!")
+        {
+            decimal steps = decimal.Parse(commandLines);
+            decimal oldPosition = currentPosition;
+            currentPosition = (currentPosition + steps) % numberOfCabins;
+            decimal difference = currentPosition - oldPosition;
+            string direction = String.Empty;
+            if (difference > 0)
+            {
+                Console.WriteLine("Go {0} steps to the right, Ani.", difference);
+            }
+            else if (difference < 0)
+            {
+                Console.WriteLine("Go {0} steps to the left, Ani.", Math.Abs(difference));
+            }
+            else
+            {
+                Console.WriteLine("Stay there, Ani.");
+            }
+            stepsTaken += Math.Abs(difference);
+            commandLines = Console.ReadLine();
+        }
+        Console.WriteLine("Moved a total of {0} steps.", stepsTaken);
+    }
+}
