@@ -1,0 +1,60 @@
+using System;
+class PerfectGirlfriend
+{
+    static void Main(string[] args)
+    {
+        string input = Console.ReadLine();
+        int counter = 0;
+        while (input != "Enough dates!")
+        {
+            string[] command = input.Split('\\');
+            string day = command[0];
+            int dayValue = DayValue(day);
+
+            decimal phoneNum = decimal.Parse(command[1]);
+            decimal phoneSum = 0;
+            while (phoneNum > 0)
+            {
+                if (phoneNum % 10 != 0)
+                    phoneSum += phoneNum % 10;
+                phoneNum /= 10;
+            }
+            phoneSum += dayValue;
+
+            string braSize = command[2];
+            char letter = braSize[braSize.Length - 1];
+            int braNum = letter * int.Parse(braSize.Substring(0, braSize.Length - 1));
+            phoneSum += braNum;
+
+            string name = command[3];
+            char firstLetter = name[0];
+            int nameWeight = firstLetter * name.Length;
+            phoneSum -= nameWeight;
+
+            if (phoneSum < 6000)
+                Console.WriteLine($"Keep searching, {name} is not for you.");
+            else
+            {
+                counter++;
+                Console.WriteLine("{0} is perfect for you.", name);
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine(counter);
+    }
+    static int DayValue(string day)
+    {
+        int dayV = 0;
+        switch (day)
+        {
+            case "Monday": dayV = 1; break;
+            case "Tuesday": dayV = 2; break;
+            case "Wednesday": dayV = 3; break;
+            case "Thursday": dayV = 4; break;
+            case "Friday": dayV = 5; break;
+            case "Saturday": dayV = 6; break;
+            case "Sunday": dayV = 7; break;
+        }
+        return dayV;
+    }
+}
