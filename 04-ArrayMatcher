@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class ArrayMatcher
+{
+    static void Main(string[] args)
+    {
+        string[] input = Console.ReadLine().Split('\\').ToArray();
+        char[] left = new char[input[0].Length];
+        char[] right = new char[input[1].Length];
+
+        for (int i = 0; i < input[0].Length; i++)
+            left[i] = input[0][i];
+        for (int i = 0; i < input[1].Length; i++)
+            right[i] = input[1][i];
+        string command = input[2];
+
+        List<char> result = new List<char>();
+        if (command == "join")
+        {
+            foreach (var item in left)
+            {
+                if (right.Contains(item))
+                    result.Add(item);
+            }
+        }
+        if (command == "right exclude")
+        {
+            foreach (var item in left)
+            {
+                if (!right.Contains(item))
+                    result.Add(item);
+            }
+        }
+        if (command == "left exclude")
+        {
+            foreach (var item in right)
+            {
+                if (!left.Contains(item))
+                    result.Add(item);
+            }
+        }
+        Console.WriteLine(string.Join("", result.OrderBy(x => x)));
+    }
+}
