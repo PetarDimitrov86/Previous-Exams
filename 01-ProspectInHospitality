@@ -1,0 +1,31 @@
+using System;
+class ProspectInHospitality
+{
+    static void Main(string[] args)
+    {
+        decimal builders = decimal.Parse(Console.ReadLine());
+        decimal receptionists = decimal.Parse(Console.ReadLine());
+        decimal chambermaids = decimal.Parse(Console.ReadLine());
+        decimal technicians = decimal.Parse(Console.ReadLine());
+        decimal otherStaff = decimal.Parse(Console.ReadLine());
+        decimal NikiSalaryUSD = decimal.Parse(Console.ReadLine());
+        decimal USDcurrencyRate = decimal.Parse(Console.ReadLine());
+        decimal mySalary = decimal.Parse(Console.ReadLine());
+        decimal budget = decimal.Parse(Console.ReadLine());
+
+        decimal buildersSalary = builders * 1500.04m;
+        decimal receptionistSalary = receptionists * 2102.10m;
+        decimal chambermaidSalary = chambermaids * 1465.46m;
+        decimal technicianSalary = technicians * 2053.33m;
+        decimal otherSalary = otherStaff * 3010.98m;
+        decimal totalStaffSalary = buildersSalary + receptionistSalary + chambermaidSalary + technicianSalary + otherSalary;
+        decimal NikiSalaryLEVA = NikiSalaryUSD * USDcurrencyRate;
+
+        decimal totalSalaries = totalStaffSalary + NikiSalaryLEVA + mySalary;
+        Console.WriteLine($"The amount is: {totalSalaries:f2} lv.");
+        if (budget>= totalSalaries)
+            Console.WriteLine($"YES \\ Left: {budget-totalSalaries:f2} lv.");
+        else
+            Console.WriteLine($"NO \\ Need more: {totalSalaries - budget:f2} lv.");
+    }
+}
