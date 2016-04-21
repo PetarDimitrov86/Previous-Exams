@@ -1,0 +1,44 @@
+using System;
+class LocalElections
+{
+    static void Main(string[] args)
+    {
+        int candidates = int.Parse(Console.ReadLine());
+        int vote = int.Parse(Console.ReadLine());
+        string symbol = Console.ReadLine().ToUpper();
+
+        int counter = 1;
+        Console.WriteLine(new string('.', 13));
+        while (candidates > 0)
+        {
+            if (counter == vote)
+            {
+                Console.WriteLine("{0}+{1}+{0}", new string('.', 3), new string('-', 5));
+                if (symbol == "X")
+                {
+                    Console.WriteLine("{0}|.\\./.|{0}", new string('.', 3));
+                    Console.WriteLine("{0:00}.|..{1}..|{2}", counter, symbol, new string('.', 3));
+                    Console.WriteLine("{0}|./.\\.|{0}", new string('.', 3));
+                }
+                else if (symbol == "V")
+                {
+                    Console.WriteLine("{0}|\\.../|{0}", new string('.', 3));
+                    Console.WriteLine("{0:00}.|.\\./.|{1}", counter,new string('.', 3));
+                    Console.WriteLine("{0}|..V..|{0}", new string('.', 3));
+                }
+                Console.WriteLine("{0}+{1}+{0}", new string('.', 3), new string('-', 5));
+            }
+            else
+            {
+                Console.WriteLine("{0}+{1}+{0}", new string('.', 3), new string('-', 5));
+                Console.WriteLine("{0}|.....|{0}", new string('.', 3));
+                Console.WriteLine("{0:00}.|.....|{1}", counter, new string('.', 3));
+                Console.WriteLine("{0}|.....|{0}", new string('.', 3));
+                Console.WriteLine("{0}+{1}+{0}", new string('.', 3), new string('-', 5));
+            }        
+            Console.WriteLine(new string('.', 13));
+            counter++;
+            candidates--;
+        } 
+    }
+}
