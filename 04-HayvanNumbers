@@ -1,0 +1,45 @@
+using System;
+class HayvanNumbers
+{
+    static void Main(string[] args)
+    {
+        int sum = int.Parse(Console.ReadLine());
+        int diff = int.Parse(Console.ReadLine());
+        bool found = false;
+          for (int firstSet = 555; firstSet <= 999; firstSet++)
+        {
+            int secondSet = firstSet + diff;
+            int thirdSet = secondSet + diff;
+            if (secondSet <= 999 && secondSet >= 555 && thirdSet <= 999 && thirdSet >= 555
+                && DigitCheck(firstSet.ToString()) && DigitCheck(secondSet.ToString()) && DigitCheck(thirdSet.ToString()))
+            {
+                string bigNumString = "" + firstSet + secondSet + thirdSet;
+                int bigNum = int.Parse(bigNumString);
+                int digitsSum = 0;
+                while (bigNum > 0)
+                {
+                    digitsSum += bigNum % 10;
+                    bigNum /= 10;
+                }
+                bool sameSum = digitsSum == sum;
+
+                if (sameSum)
+                {
+                    Console.WriteLine($"{firstSet}{secondSet}{thirdSet}");
+                    found = true;
+                }
+            }
+        }
+        if (found == false)
+            Console.WriteLine("No");
+    }
+    static bool DigitCheck(string num)
+    {
+        foreach (var item in num)
+        {
+            if (item < '5' || item > '9')
+                return false;
+        }
+        return true;
+    }
+}
