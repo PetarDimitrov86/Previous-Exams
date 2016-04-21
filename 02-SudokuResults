@@ -1,0 +1,30 @@
+using System;
+using System.Linq;
+class SudokuResults
+{
+    static void Main(string[] args)
+    {
+        string input = Console.ReadLine();
+        decimal sumSeconds = 0;
+        int gameCount = 0;
+        while (input != "Quit")
+        {
+            int[] command = input.Split(':').Select(int.Parse).ToArray();
+            int minutes = command[0];
+            int seconds = command[1];
+            int totalSeconds = minutes * 60 + seconds;
+
+            sumSeconds += totalSeconds;
+            gameCount++;
+            input = Console.ReadLine();
+        }
+        decimal averageTime = Math.Ceiling(sumSeconds / gameCount);
+        if (averageTime < 720)
+            Console.WriteLine("Gold Star");
+        else if (averageTime >= 720 && averageTime <= 1440)
+            Console.WriteLine("Silver Star");
+        else
+            Console.WriteLine("Bronze Star");
+        Console.WriteLine($"Games - {gameCount} \\ Average seconds - {averageTime}");
+    }
+}
