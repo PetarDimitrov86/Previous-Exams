@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class ImpressTheGirlfriend
+{
+    static void Main(string[] args)
+    {
+        decimal rubles = decimal.Parse(Console.ReadLine());
+        decimal dollars = decimal.Parse(Console.ReadLine());
+        decimal euro = decimal.Parse(Console.ReadLine());
+        decimal specialOfferLV = decimal.Parse(Console.ReadLine());
+        decimal priceMinLV = decimal.Parse(Console.ReadLine());
+
+        decimal rublesInLV = rubles * 0.035m;
+        decimal dollarsInLV = dollars * 1.5m;
+        decimal euroInLV = euro * 1.95m;
+        decimal offerSingleGame = specialOfferLV / 2.0m;
+
+        decimal max1 = Math.Max(rublesInLV, dollarsInLV);
+        decimal max2 = Math.Max(euroInLV, offerSingleGame);
+        decimal max = Math.Max(max1, max2);
+        decimal maxFinal = Math.Max(max, priceMinLV);
+
+        Console.WriteLine("{0:f2}", Math.Ceiling(maxFinal));
+    }
+}
