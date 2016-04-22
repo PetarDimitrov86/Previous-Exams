@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class TheFootballStatistician
+{
+    static void Main(string[] args)
+    {
+        decimal payment = decimal.Parse(Console.ReadLine());
+        string input = Console.ReadLine();
+        SortedDictionary<string, int> league = new SortedDictionary<string, int>();
+        league["Arsenal"] = 0;
+        league["Chelsea"] = 0;
+        league["Manchester City"] = 0;
+        league["Manchester United"] = 0;
+        league["Liverpool"] = 0;
+        league["Everton"] = 0;
+        league["Southampton"] = 0;
+        league["Tottenham"] = 0;
+
+        int counter = 0;
+        while (input != "End of the league.")
+        {
+            string[] match = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string team1 = match[0];
+            string team2 = match[2];
+            string outcome = match[1];
+            if (team1 == "ManchesterCity")
+                team1 = "Manchester City";
+            if (team2 == "ManchesterCity")
+                team2 = "Manchester City";
+            if (team1 == "ManchesterUnited")
+                team1 = "Manchester United";
+            if (team2 == "ManchesterUnited")
+                team2 = "Manchester United";
+            if (outcome == "1")
+                league[team1] += 3;
+            else if (outcome == "2")
+                league[team2] += 3;
+            else if (outcome == "X")
+            {
+                league[team1] += 1;
+                league[team2] += 1;
+            }
+            counter++;
+            input = Console.ReadLine();
+        }
+        Console.WriteLine("{0:f2}lv.", counter * payment * 1.94m);
+        foreach (var item in league)
+            Console.WriteLine("{0} - {1} points.", item.Key, item.Value);
+    }
+}
