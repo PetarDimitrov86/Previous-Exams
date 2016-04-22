@@ -1,0 +1,33 @@
+using System;
+class DailyCalorieIntake
+{
+    static void Main(string[] args)
+    {
+        decimal weightPounds = decimal.Parse(Console.ReadLine());
+        decimal heightInches = decimal.Parse(Console.ReadLine());
+        decimal age = decimal.Parse(Console.ReadLine());
+        string gender = Console.ReadLine();
+        decimal workoutsPerWeek = decimal.Parse(Console.ReadLine());
+
+        decimal weightKG = weightPounds / 2.2m;
+        decimal heightCM = heightInches * 2.54m;
+
+        decimal BMR = 0m;
+        if (gender == "m")
+            BMR = 66.5m + (13.75m * weightKG) + (5.003m * heightCM) - (6.755m * age);
+        else
+            BMR = 655m + (9.563m * weightKG) + (1.850m * heightCM) - (4.676m * age);
+
+        decimal DCI = BMR * 1.2m;
+        if (workoutsPerWeek >= 1 && workoutsPerWeek <= 3)
+            DCI = BMR * 1.375m;
+        else if (workoutsPerWeek >= 4 && workoutsPerWeek <= 6)
+            DCI = BMR * 1.55m;
+        else if (workoutsPerWeek >= 7 && workoutsPerWeek <= 9)
+            DCI = BMR * 1.725m;
+        else if (workoutsPerWeek > 9)
+            DCI = BMR * 1.9m;
+
+        Console.WriteLine(Math.Floor(DCI));
+    }
+}
