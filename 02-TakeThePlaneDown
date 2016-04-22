@@ -1,0 +1,19 @@
+using System;
+class TakeThePlaneDown
+{
+    static void Main(string[] args)
+    {
+        int xHead = int.Parse(Console.ReadLine());
+        int yHead = int.Parse(Console.ReadLine());
+        int distance = int.Parse(Console.ReadLine());
+        int numPlanes = int.Parse(Console.ReadLine());
+        for (int i = 0; i < numPlanes; i++)
+        {
+            int xPlane = int.Parse(Console.ReadLine());
+            int yPlane = int.Parse(Console.ReadLine());
+
+            if (Math.Pow(xPlane - xHead, 2) + Math.Pow(yPlane - yHead, 2) < Math.Pow(distance, 2))
+                Console.WriteLine("You destroyed a plane at [{0},{1}]", xPlane, yPlane);
+        }
+    }
+}
