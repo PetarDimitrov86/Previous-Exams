@@ -1,0 +1,43 @@
+using System;
+class EncodedAnswers
+{
+    static void Main(string[] args)
+    {
+        int questions = int.Parse(Console.ReadLine());
+        int countA = 0;
+        int countB = 0;
+        int countC = 0;
+        int countD = 0;
+        string result = string.Empty;
+
+        for (int i = 0; i < questions; i++)
+        {
+            uint answer = uint.Parse(Console.ReadLine());
+            if (answer % 4 == 0)
+            {
+                countA++;
+                result += "" + "a" + " ";
+            }
+            else if (answer % 4 == 1)
+            {
+                countB++;
+                result += "" + "b" + " ";
+            }
+            else if (answer % 4 == 2)
+            {
+                countC++;
+                result += "" + "c" + " ";
+            }
+            else if (answer % 4 == 3)
+            {
+                countD++;
+                result += "" + "d" + " ";
+            }
+        }
+        Console.WriteLine(result);
+        Console.WriteLine("Answer A: {0}", countA);
+        Console.WriteLine("Answer B: {0}", countB);
+        Console.WriteLine("Answer C: {0}", countC);
+        Console.WriteLine("Answer D: {0}", countD);
+    }
+}
