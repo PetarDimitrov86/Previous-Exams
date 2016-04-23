@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class MasterHerbalist
+{
+    static void Main(string[] args)
+    {
+        decimal dailyExpenses = decimal.Parse(Console.ReadLine());
+        string input = Console.ReadLine();
+        decimal totalEarnings = 0;
+        decimal days = 0;
+        decimal earningsPerDay = 0;
+        while (input != "Season Over")
+        {
+            days++;
+            string[] command = input.Split(' ');
+            decimal hours = decimal.Parse(command[0]);
+            string path = command[1].ToUpper();
+            decimal herbPrice = decimal.Parse(command[2]);
+
+            decimal herbsGathered = 0;
+            for (int i = 0; i < hours; i++)
+            {
+                if (path[i % path.Length] == 'H')
+                    herbsGathered++;                 
+            }
+            decimal moneyGained = herbsGathered * herbPrice;
+            totalEarnings += moneyGained;
+            input = Console.ReadLine();
+            earningsPerDay = totalEarnings / days;
+        }
+        if (earningsPerDay >= dailyExpenses)
+            Console.WriteLine("Times are good. Extra money per day: {0:f2}.", earningsPerDay - dailyExpenses);
+        else
+            Console.WriteLine("We are in the red. Money needed: {0}.", Math.Ceiling((dailyExpenses - earningsPerDay)*days));
+     }
+}
