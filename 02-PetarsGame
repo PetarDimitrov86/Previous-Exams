@@ -1,0 +1,32 @@
+using System;
+class PetarsGame
+{
+    static void Main(string[] args)
+    {
+        ulong startNum = ulong.Parse(Console.ReadLine());
+        ulong endNum = ulong.Parse(Console.ReadLine());
+        string replacement = Console.ReadLine();
+        string result = string.Empty;
+
+        decimal sum = 0;
+        for (ulong i = startNum; i < endNum; i++)
+        {
+            if (i % 5 == 0)
+                sum += i;
+            else
+                sum += i % 5;
+        }
+        if (sum % 2 == 1)
+        {
+            string lastDigit = (sum % 10).ToString();
+            result = sum.ToString().Replace(lastDigit, replacement);
+        }
+        else
+        {
+            string sumString = sum.ToString();
+            string firstDigit = sumString[0].ToString();
+            result = sum.ToString().Replace(firstDigit, replacement);
+        }
+        Console.WriteLine(result);
+    }
+}
