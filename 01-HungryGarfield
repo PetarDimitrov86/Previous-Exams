@@ -1,0 +1,25 @@
+using System;
+class HungryGarfield
+{
+    static void Main(string[] args)
+    {
+        decimal budget = decimal.Parse(Console.ReadLine());
+        decimal dollarRate = decimal.Parse(Console.ReadLine());
+        decimal pizzaPriceLV = decimal.Parse(Console.ReadLine());
+        decimal lasagnaPriceLV = decimal.Parse(Console.ReadLine());
+        decimal sandwichPriceLV = decimal.Parse(Console.ReadLine());
+        decimal pizzaQuantity = decimal.Parse(Console.ReadLine());
+        decimal lasagnaQuantity = decimal.Parse(Console.ReadLine());
+        decimal sandwichQuantity = decimal.Parse(Console.ReadLine());
+
+        decimal pizzaPriceUSD = pizzaPriceLV * pizzaQuantity / dollarRate;
+        decimal lasagnaPriceUSD = lasagnaPriceLV * lasagnaQuantity / dollarRate;
+        decimal sandwichPriceUSD = sandwichPriceLV * sandwichQuantity / dollarRate;
+
+        decimal totalCost = pizzaPriceUSD + lasagnaPriceUSD + sandwichPriceUSD;
+        if (budget >= totalCost)
+            Console.WriteLine("Garfield is well fed, John is awesome. Money left: ${0:f2}.", budget - totalCost);
+        else
+            Console.WriteLine("Garfield is hungry. John is a badass. Money needed: ${0:f2}.", totalCost - budget);
+    }
+}
