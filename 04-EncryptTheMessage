@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+class EncryptTheMessages
+{
+    static void Main(string[] args)
+    {
+        string input = Console.ReadLine();
+        int counter = 0;
+        while (input.ToLower() != "start")
+            input = Console.ReadLine();
+        input = string.Empty;
+        string result = "";
+        List<string> finalResult = new List<string>();
+        while (input.ToLower() != "end")
+        {
+            if (input != "")
+            {
+                counter++;
+                for (int i = input.Length - 1; i >= 0; i--)
+                {
+                    if (input[i] >= 'A' && input[i] <= 'M')
+                    {
+                        char letter = (char)(input[i] + 13);
+                        result += letter.ToString();
+                    }
+                    else if (input[i] >= 'N' && input[i] <= 'Z')
+                    {
+                        char letter = (char)(input[i] - 13);
+                        result += letter.ToString();
+                    }
+                    else if (input[i] >= 'n' && input[i] <= 'z')
+                    {
+                        char letter = (char)(input[i] - 13);
+                        result += letter.ToString();
+                    }
+                    else if (input[i] >= 'a' && input[i] <= 'n')
+                    {
+                        char letter = (char)(input[i] + 13);
+                        result += letter.ToString();
+                    }
+                    else if (input[i] == ' ')
+                        result += "+";
+                    else if (input[i] == ',')
+                        result += "%";
+                    else if (input[i] == '.')
+                        result += "&";
+                    else if (input[i] == '?')
+                        result += "#";
+                    else if (input[i] == '!')
+                        result += "$";
+                    else
+                        result += input[i];
+                }
+                finalResult.Add(result);
+                result = string.Empty;
+            }
+            input = Console.ReadLine();
+        }
+        if (counter > 0)
+            Console.WriteLine("Total number of messages: {0}", counter);
+        else
+            Console.WriteLine("No messages sent.");
+        Console.WriteLine(string.Join("\n", finalResult));
+
+    }
+}
