@@ -1,0 +1,66 @@
+using System;
+class PassionDays
+{
+    static void Main(string[] args)
+    {
+        decimal budget = decimal.Parse(Console.ReadLine());
+        string input = Console.ReadLine();
+        while (input != "mall.Enter")
+            input = Console.ReadLine();
+        input = string.Empty;
+        int purchases = 0;
+        while (input != "mall.Exit" )
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                purchases++;
+                if (char.IsUpper(input[i]))
+                {
+                    if (0.5m * input[i] > budget)
+                    {
+                        purchases--;
+                        continue;
+                    }
+                    budget -= 0.5m * input[i];
+                }
+                else if (char.IsLower(input[i]))
+                {
+                    if (0.3m * input[i] > budget)
+                    {
+                        purchases--;
+                        continue;
+                    }
+                    budget -= 0.3m * input[i];
+                }
+                else if (input[i] == '%')
+                {
+                    if (budget == 0)
+                    {
+                        purchases--;
+                        continue;
+                    }
+                    budget /= 2;
+                }
+                else if (input[i] == '*')
+                {
+                    budget += 10;
+                    purchases--;
+                }
+                else
+                {
+                    if (input[i] > budget)
+                    {
+                        purchases--;
+                        continue;
+                    }
+                    budget -= input[i];
+                }
+            }
+            input = Console.ReadLine();
+        }
+        if (purchases == 0)
+            Console.WriteLine("No purchases. Money left: {0:f2} lv.", budget);
+        else
+            Console.WriteLine("{0} purchases. Money left: {1:f2} lv.", purchases, budget);
+    }
+}
