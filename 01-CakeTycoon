@@ -1,0 +1,22 @@
+using System;
+class CakeTycoon
+{
+    static void Main(string[] args)
+    {
+        decimal wantedCakes = decimal.Parse(Console.ReadLine());
+        decimal flourNeededPerCake = decimal.Parse(Console.ReadLine());
+        decimal flourKilosAvailable = decimal.Parse(Console.ReadLine());
+        decimal trufflesAvailable = decimal.Parse(Console.ReadLine());
+        decimal trufflePrice = decimal.Parse(Console.ReadLine());
+
+        decimal totalFlourForAllWantedCakes = wantedCakes * flourNeededPerCake;
+        decimal possibleCakes = (int)Math.Floor(flourKilosAvailable / flourNeededPerCake);
+        decimal trufflesCost = trufflePrice * trufflesAvailable;
+        decimal cakePrice = trufflesCost / wantedCakes * 1.25m;
+        
+        if (wantedCakes > possibleCakes)
+            Console.WriteLine("Can make only {0} cakes, need {1:f2} kg more flour", possibleCakes, totalFlourForAllWantedCakes - flourKilosAvailable);
+        else
+            Console.WriteLine("All products available, price of a cake: {0:f2}", cakePrice);
+    }
+}
