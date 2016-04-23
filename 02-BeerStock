@@ -1,0 +1,31 @@
+using System;
+class BeerStock
+{
+    static void Main(string[] args)
+    {
+        ulong reservedBeers = ulong.Parse(Console.ReadLine());
+        string input = Console.ReadLine();
+        ulong totalBeersOrdered = 0;
+
+        while (input != "Exam Over")
+        {
+            string[] command = input.Split(' ');
+            ulong ammount = ulong.Parse(command[0]);
+            string container = command[1];
+            switch (container)
+            {
+                case "beers": totalBeersOrdered+= ammount; break;
+                case "sixpacks": totalBeersOrdered += 6*ammount; break;
+                case "cases": totalBeersOrdered += 24*ammount; break;        
+            }
+            input = Console.ReadLine();
+        }
+        totalBeersOrdered -= totalBeersOrdered / 100;
+        ulong beerLeft = totalBeersOrdered - reservedBeers;
+        ulong beerNeeded = reservedBeers - totalBeersOrdered;
+        if (totalBeersOrdered >= reservedBeers)
+            Console.WriteLine("Cheers! Beer left: {0} cases, {1} sixpacks and {2} beers.", beerLeft / 24, (beerLeft % 24) / 6, beerLeft % 6);
+        else
+            Console.WriteLine("Not enough beer. Beer needed: {0} cases, {1} sixpacks and {2} beers.", beerNeeded / 24, (beerNeeded % 24)/6, beerNeeded % 6);
+    }
+}
